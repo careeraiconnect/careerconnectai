@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CareerConnect AI</title>
@@ -9,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -17,17 +21,17 @@
 }
 
 body{
-    background:#f4f7fb;
+    background:#f5f7fb;
     color:#172033;
 }
 
-nav{
-    height:65px;
-    background:#fff;
+.navbar{
+    height:70px;
+    background:#ffffff;
     border-bottom:1px solid #e5e7eb;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     padding:0 6%;
     position:sticky;
     top:0;
@@ -40,50 +44,53 @@ nav{
     color:#2563eb;
 }
 
-.logo span{
-    color:#111827;
-}
-
 .nav-user{
     font-size:14px;
-    color:#64748b;
+    color:#667085;
 }
 
 .page{
     display:none;
-    min-height:calc(100vh - 65px);
+    min-height:calc(100vh - 70px);
 }
 
 .page.active{
     display:block;
 }
 
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+}
+
 .login-container{
-    min-height:calc(100vh - 65px);
+    min-height:calc(100vh - 70px);
     display:flex;
-    justify-content:center;
     align-items:center;
-    padding:25px;
+    justify-content:center;
+    padding:30px;
 }
 
 .card{
-    background:#fff;
+    background:#ffffff;
     border:1px solid #e5e7eb;
-    border-radius:16px;
-    padding:28px;
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
 }
 
 .login-card{
     width:430px;
+    padding:35px;
 }
 
 h1{
     font-size:38px;
-    margin-bottom:12px;
+    margin-bottom:15px;
 }
 
 h2{
+    font-size:28px;
     margin-bottom:10px;
 }
 
@@ -92,46 +99,50 @@ h3{
 }
 
 .subtitle{
-    color:#64748b;
+    color:#667085;
+    margin-bottom:25px;
     line-height:1.5;
-    margin-bottom:22px;
 }
 
 .form-group{
-    margin-bottom:16px;
+    margin-bottom:18px;
 }
 
 label{
     display:block;
-    font-size:14px;
     font-weight:600;
+    font-size:14px;
     margin-bottom:7px;
 }
 
 input,
-select{
+select,
+textarea{
     width:100%;
-    padding:12px;
-    border:1px solid #d7dce5;
-    border-radius:9px;
+    padding:13px 14px;
+    border:1px solid #d0d5dd;
+    border-radius:10px;
     outline:none;
-    font-size:14px;
-    background:#fff;
+    font-size:15px;
+    background:white;
 }
 
 input:focus,
-select:focus{
+select:focus,
+textarea:focus{
     border-color:#2563eb;
 }
 
 .primary-btn{
     width:100%;
-    padding:13px;
-    border-radius:9px;
+    border:none;
     background:#2563eb;
     color:white;
+    padding:14px;
+    border-radius:10px;
     font-size:15px;
     font-weight:700;
+    cursor:pointer;
     margin-top:5px;
 }
 
@@ -140,27 +151,30 @@ select:focus{
 }
 
 .secondary-btn{
-    padding:12px 18px;
-    border-radius:9px;
-    background:#eaf0ff;
+    border:1px solid #2563eb;
+    background:white;
     color:#2563eb;
+    padding:12px 18px;
+    border-radius:10px;
     font-weight:700;
+    cursor:pointer;
 }
 
 .demo-btn{
     width:100%;
-    padding:12px;
+    border:1px solid #d0d5dd;
+    background:white;
+    padding:13px;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
     margin-top:12px;
-    background:#f1f5f9;
-    border-radius:9px;
-    color:#334155;
-    font-weight:600;
 }
 
 .status{
-    min-height:18px;
-    margin-top:10px;
-    font-size:13px;
+    margin-top:12px;
+    font-size:14px;
+    line-height:1.5;
 }
 
 .success-text{
@@ -176,298 +190,353 @@ select:focus{
 }
 
 .hero{
-    max-width:1100px;
-    margin:auto;
-    padding:65px 25px 30px;
+    padding:70px 0;
 }
 
-.hero p{
-    max-width:720px;
-    color:#64748b;
-    font-size:17px;
-    line-height:1.6;
-}
-
-.blue{
-    color:#2563eb;
-}
-
-.cards{
-    max-width:1100px;
-    margin:20px auto;
-    padding:0 25px 50px;
+.hero-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    grid-template-columns:1.3fr .7fr;
+    gap:35px;
+    align-items:center;
 }
 
-.mode-card{
-    background:white;
-    border:1px solid #e5e7eb;
-    padding:25px;
-    border-radius:15px;
-}
-
-.mode-icon{
-    font-size:35px;
-    margin-bottom:14px;
-}
-
-.mode-card p{
-    color:#64748b;
-    line-height:1.5;
+.badge{
+    display:inline-block;
+    padding:8px 12px;
+    background:#dbeafe;
+    color:#1d4ed8;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
     margin-bottom:18px;
 }
 
-.wizard{
-    max-width:850px;
-    margin:35px auto;
-    padding:0 20px 50px;
-}
-
-.steps{
-    display:flex;
+.hero p{
+    color:#667085;
+    font-size:17px;
+    line-height:1.7;
     margin-bottom:25px;
 }
 
-.step{
-    flex:1;
-    text-align:center;
-    color:#94a3b8;
-    font-size:13px;
-}
-
-.step.active{
-    color:#2563eb;
-    font-weight:bold;
-}
-
-.progress{
-    height:6px;
-    background:#e2e8f0;
-    border-radius:20px;
-    margin-bottom:25px;
-}
-
-.progress-bar{
-    height:100%;
-    background:#2563eb;
-    border-radius:20px;
-    width:33%;
-}
-
-.wizard-page{
-    display:none;
-}
-
-.wizard-page.active{
-    display:block;
-}
-
-.file-box{
-    border:2px dashed #cbd5e1;
+.hero-card{
     padding:30px;
-    border-radius:12px;
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.file-box input{
-    border:none;
-}
-
-.choice-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.choice{
-    border:1px solid #dbe1ea;
-    padding:15px;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-.choice.selected{
-    border:2px solid #2563eb;
-    background:#eff6ff;
-}
-
-.choice input{
-    width:auto;
-    margin-right:8px;
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.button-row{
-    display:flex;
-    gap:12px;
-    margin-top:20px;
-}
-
-.button-row button{
-    flex:1;
-}
-
-.analysis{
-    max-width:850px;
-    margin:70px auto;
-    text-align:center;
-    padding:20px;
-}
-
-.analysis-icon{
-    font-size:65px;
-    margin-bottom:20px;
-}
-
-.analysis p{
-    color:#64748b;
-    margin:10px 0 25px;
-}
-
-.results{
-    max-width:1100px;
-    margin:35px auto;
-    padding:0 20px 50px;
-}
-
-.profile-summary{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin:20px 0;
 }
 
 .stat{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:20px;
+    padding:18px;
+    border-bottom:1px solid #eee;
+}
+
+.stat:last-child{
+    border-bottom:none;
 }
 
 .stat strong{
     display:block;
     font-size:24px;
     color:#2563eb;
-    margin-top:5px;
 }
 
-.jobs{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin-top:20px;
-}
-
-.job-card{
-    background:white;
-    border:1px solid #e5e7eb;
-    border-radius:14px;
-    padding:20px;
-}
-
-.company{
-    color:#64748b;
+.stat span{
+    color:#667085;
     font-size:14px;
 }
 
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin:15px 0;
+.section{
+    padding:40px 0 70px;
 }
 
-.tag{
-    background:#eff6ff;
-    color:#2563eb;
-    padding:5px 8px;
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.mode-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.mode-card{
+    padding:25px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.mode-card:hover{
+    transform:translateY(-4px);
+    border-color:#2563eb;
+}
+
+.mode-icon{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.mode-card p{
+    color:#667085;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.wizard{
+    padding:45px 0;
+}
+
+.wizard-card{
+    max-width:850px;
+    margin:auto;
+    padding:35px;
+}
+
+.steps{
+    display:flex;
+    gap:8px;
+    margin-bottom:30px;
+}
+
+.step{
+    flex:1;
+    height:7px;
+    background:#e5e7eb;
     border-radius:20px;
-    font-size:11px;
+}
+
+.step.active{
+    background:#2563eb;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.tech-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.tech{
+    border:1px solid #d0d5dd;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:center;
+    font-size:14px;
+}
+
+.tech.selected{
+    background:#dbeafe;
+    border-color:#2563eb;
+    color:#1d4ed8;
+    font-weight:700;
+}
+
+.wizard-buttons{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:25px;
+}
+
+.wizard-buttons button{
+    width:auto;
+    padding-left:25px;
+    padding-right:25px;
+}
+
+.analysis{
+    min-height:calc(100vh - 70px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.analysis-box{
+    max-width:600px;
+}
+
+.loader{
+    width:60px;
+    height:60px;
+    border:6px solid #e5e7eb;
+    border-top-color:#2563eb;
+    border-radius:50%;
+    margin:0 auto 25px;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.results{
+    padding:45px 0;
+}
+
+.profile-summary{
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.profile-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.profile-stat{
+    background:#f8fafc;
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.profile-stat strong{
+    display:block;
+    font-size:25px;
+    color:#2563eb;
+}
+
+.profile-stat span{
+    color:#667085;
+    font-size:13px;
+}
+
+.job-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.job-card{
+    padding:25px;
+}
+
+.job-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:12px;
 }
 
 .match{
-    font-weight:bold;
+    background:#dcfce7;
     color:#15803d;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.company{
+    color:#667085;
     margin-bottom:10px;
+}
+
+.job-meta{
+    color:#667085;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-bottom:18px;
+}
+
+.skill{
+    background:#eef2ff;
+    color:#3730a3;
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:12px;
+}
+
+.job-card button{
+    width:100%;
 }
 
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(15,23,42,.55);
+    background:rgba(0,0,0,.5);
     z-index:200;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     padding:20px;
 }
 
+.modal.active{
+    display:flex;
+}
+
 .modal-box{
-    background:#fff;
-    width:550px;
-    max-width:100%;
-    max-height:90vh;
-    overflow:auto;
-    border-radius:16px;
-    padding:25px;
+    background:white;
+    max-width:600px;
+    width:100%;
+    border-radius:18px;
+    padding:30px;
 }
 
 .close{
     float:right;
     font-size:25px;
     cursor:pointer;
-    color:#64748b;
 }
 
-.success-page{
-    max-width:700px;
-    margin:100px auto;
+.success-box{
     text-align:center;
-    padding:25px;
+    max-width:650px;
+    margin:80px auto;
+    padding:45px;
 }
 
 .success-icon{
-    font-size:70px;
+    font-size:65px;
     margin-bottom:20px;
 }
 
 .report{
-    max-width:850px;
-    margin:35px auto;
-    padding:20px;
+    padding:45px 0;
 }
 
-.report-section{
-    background:#fff;
-    border:1px solid #e5e7eb;
-    border-radius:13px;
-    padding:20px;
-    margin-bottom:15px;
+.report-card{
+    padding:30px;
+    margin-bottom:20px;
 }
 
-.report-section p{
-    line-height:1.8;
-}
-
-ul{
+.report-list{
     padding-left:20px;
-    line-height:1.8;
+    line-height:2;
+}
+
+.footer{
+    padding:25px;
+    text-align:center;
+    color:#667085;
+    font-size:13px;
 }
 
 @media(max-width:800px){
 
-    .cards,
-    .jobs,
-    .profile-summary{
+    .hero-grid,
+    .mode-grid,
+    .job-grid{
         grid-template-columns:1fr;
     }
 
@@ -475,45 +544,53 @@ ul{
         grid-template-columns:1fr;
     }
 
+    .profile-stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .tech-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
 }
 
 @media(max-width:500px){
 
-    .choice-grid{
-        grid-template-columns:1fr;
+    .navbar{
+        padding:0 4%;
     }
 
-    .login-card{
-        width:100%;
+    .login-card,
+    .wizard-card{
+        padding:22px;
+    }
+
+    h1{
+        font-size:30px;
     }
 
 }
+
 </style>
+
 </head>
 
 <body>
 
+<nav class="navbar">
 
-<!-- =========================================
-     NAVBAR
-========================================= -->
+<div class="logo">
+CareerConnect AI
+</div>
 
-<nav>
-
-    <div class="logo">
-        CareerConnect <span>AI</span>
-    </div>
-
-    <div class="nav-user" id="navUser">
-        Not logged in
-    </div>
+<div class="nav-user" id="navUser">
+Not logged in
+</div>
 
 </nav>
 
 
-<!-- =========================================
-     LOGIN PAGE
-========================================= -->
+<!-- LOGIN -->
 
 <section id="loginPage" class="page active">
 
@@ -527,9 +604,6 @@ ul{
 Verify your Gmail to continue
 </p>
 
-
-<!-- GMAIL -->
-
 <div class="form-group">
 
 <label>Gmail Address</label>
@@ -541,7 +615,6 @@ placeholder="yourname@gmail.com">
 
 </div>
 
-
 <button
 class="primary-btn"
 onclick="sendOTP()">
@@ -550,8 +623,6 @@ SEND OTP
 
 </button>
 
-
-<!-- OTP -->
 
 <div
 id="otpSection"
@@ -570,7 +641,6 @@ placeholder="Enter 6-digit OTP">
 
 </div>
 
-
 <button
 class="primary-btn"
 onclick="verifyOTP()">
@@ -579,7 +649,6 @@ VERIFY OTP
 
 </button>
 
-
 <p
 id="otpStatus"
 class="status">
@@ -587,8 +656,6 @@ class="status">
 
 </div>
 
-
-<!-- PASSWORD -->
 
 <div
 id="passwordSection"
@@ -604,7 +671,6 @@ type="password"
 placeholder="Minimum 8 characters">
 
 </div>
-
 
 <button
 class="primary-btn"
@@ -625,7 +691,6 @@ Try Demo Login
 
 </button>
 
-
 </div>
 
 </div>
@@ -633,185 +698,270 @@ Try Demo Login
 </section>
 
 
-<!-- =========================================
-     HOME PAGE
-========================================= -->
+<!-- HOME -->
 
 <section id="homePage" class="page">
 
+<div class="container">
+
 <div class="hero">
 
+<div class="hero-grid">
+
+<div>
+
+<span class="badge">
+AI-Powered Career Platform
+</span>
+
 <h1>
-Build Your <span class="blue">Career</span> With AI
+Build Your Career With AI
 </h1>
 
 <p>
 CareerConnect AI helps students, freshers and professionals
-discover suitable jobs, identify missing skills and build a
-personalized career path.
+find suitable jobs based on their education, skills,
+experience and career goals.
 </p>
+
+<button
+class="primary-btn"
+style="width:auto;padding:14px 25px"
+onclick="showCareerModes()">
+
+START CAREER JOURNEY
+
+</button>
+
+</div>
+
+<div class="card hero-card">
+
+<div class="stat">
+
+<strong>AI</strong>
+
+<span>Career Analysis</span>
+
+</div>
+
+<div class="stat">
+
+<strong>94%</strong>
+
+<span>Average Job Match</span>
+
+</div>
+
+<div class="stat">
+
+<strong>100+</strong>
+
+<span>Career Opportunities</span>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
 
-<div class="cards">
+<div
+id="careerModes"
+class="section"
+style="display:none">
 
+<div class="section-title">
 
-<div class="mode-card">
+<h2>
+Choose Your Career Path
+</h2>
+
+<p class="subtitle">
+Tell us where you are in your career journey.
+</p>
+
+</div>
+
+<div class="mode-grid">
+
+<div
+class="card mode-card"
+onclick="selectCareerMode('Student / Fresher')">
 
 <div class="mode-icon">🎓</div>
 
-<h2>Student / Fresher</h2>
+<h3>Student / Fresher</h3>
 
 <p>
-Find internships and entry-level jobs based on your education
-and skills.
+Find internships and entry-level jobs based on your
+degree, branch and technical skills.
 </p>
-
-<button
-class="primary-btn"
-onclick="startCareer('Student / Fresher')">
-
-Start Career
-
-</button>
 
 </div>
 
 
-<div class="mode-card">
+<div
+class="card mode-card"
+onclick="selectCareerMode('Working Professional')">
 
 <div class="mode-icon">💼</div>
 
-<h2>Working Professional</h2>
+<h3>Working Professional</h3>
 
 <p>
-Discover better opportunities and improve your professional
-career.
+Discover better opportunities and improve your current
+career path.
 </p>
-
-<button
-class="primary-btn"
-onclick="startCareer('Working Professional')">
-
-Start Career
-
-</button>
 
 </div>
 
 
-<div class="mode-card">
+<div
+class="card mode-card"
+onclick="selectCareerMode('Career Change')">
 
 <div class="mode-icon">🔄</div>
 
-<h2>Career Change</h2>
+<h3>Career Change</h3>
 
 <p>
-Explore a new career path and identify the skills you need.
+Explore a new career direction using your existing skills.
 </p>
-
-<button
-class="primary-btn"
-onclick="startCareer('Career Change')">
-
-Start Career
-
-</button>
 
 </div>
 
+</div>
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================
-     WIZARD
-========================================= -->
+<!-- WIZARD -->
 
 <section id="wizardPage" class="page">
 
-<div class="wizard">
+<div class="container wizard">
 
+<div class="card wizard-card">
 
 <div class="steps">
 
-<div id="stepLabel1" class="step active">
-1. Resume
-</div>
+<div class="step active" id="stepIndicator1"></div>
 
-<div id="stepLabel2" class="step">
-2. Preferences
-</div>
+<div class="step" id="stepIndicator2"></div>
 
-<div id="stepLabel3" class="step">
-3. Profile
-</div>
-
-</div>
-
-
-<div class="progress">
-
-<div
-id="progressBar"
-class="progress-bar">
-</div>
+<div class="step" id="stepIndicator3"></div>
 
 </div>
 
 
 <!-- STEP 1 -->
 
-<div
-id="wizard1"
-class="card wizard-page active">
+<div id="wizardStep1">
 
-<h2>Upload Your Resume</h2>
+<h2>
+Career Profile
+</h2>
 
 <p class="subtitle">
-Upload your resume so CareerConnect AI can understand your
-skills and experience.
+Start by adding your resume and preferred job type.
 </p>
 
+<div class="form-group">
 
-<div class="file-box">
-
-<p>📄 Select your resume</p>
-
-<br>
+<label>Upload Resume</label>
 
 <input
-id="resumeFile"
 type="file"
+id="resume"
 accept=".pdf,.doc,.docx">
-
-<p
-id="resumeName"
-class="status">
-</p>
 
 </div>
 
 
-<div class="button-row">
+<div class="form-group">
 
-<button
-class="secondary-btn"
-onclick="skipResume()">
+<label>Preferred Job Type</label>
 
-Skip
+<select id="jobType">
 
-</button>
+<option value="">
+Select job type
+</option>
 
+<option>
+Full-time
+</option>
+
+<option>
+Part-time
+</option>
+
+<option>
+Internship
+</option>
+
+<option>
+Any
+</option>
+
+</select>
+
+</div>
+
+
+<h3 style="margin-top:25px">
+Technologies / Skills
+</h3>
+
+<p class="subtitle">
+Select the technologies you know.
+</p>
+
+<div class="tech-grid">
+
+<div class="tech" onclick="toggleTech(this,'Python')">
+Python
+</div>
+
+<div class="tech" onclick="toggleTech(this,'Java')">
+Java
+</div>
+
+<div class="tech" onclick="toggleTech(this,'C++')">
+C++
+</div>
+
+<div class="tech" onclick="toggleTech(this,'Web Development')">
+Web Development
+</div>
+
+<div class="tech" onclick="toggleTech(this,'AI/ML')">
+AI / ML
+</div>
+
+<div class="tech" onclick="toggleTech(this,'Not Sure')">
+Not Sure
+</div>
+
+</div>
+
+
+<div class="wizard-buttons">
+
+<div></div>
 
 <button
 class="primary-btn"
 onclick="nextStep(2)">
 
-Continue
+NEXT
 
 </button>
 
@@ -823,227 +973,18 @@ Continue
 <!-- STEP 2 -->
 
 <div
-id="wizard2"
-class="card wizard-page">
+id="wizardStep2"
+style="display:none">
 
-<h2>Career Preferences</h2>
+<h2>
+Education
+</h2>
 
 <p class="subtitle">
-Tell us what kind of opportunity you are looking for.
+Tell us about your academic background.
 </p>
-
-
-<h3>Job Type</h3>
-
-
-<div class="choice-grid">
-
-
-<div
-class="choice"
-onclick="selectJobType(this,'Full-time')">
-
-<input type="radio" name="jobType">
-
-Full-time
-
-</div>
-
-
-<div
-class="choice"
-onclick="selectJobType(this,'Part-time')">
-
-<input type="radio" name="jobType">
-
-Part-time
-
-</div>
-
-
-<div
-class="choice"
-onclick="selectJobType(this,'Internship')">
-
-<input type="radio" name="jobType">
-
-Internship
-
-</div>
-
-
-<div
-class="choice"
-onclick="selectJobType(this,'Any')">
-
-<input type="radio" name="jobType">
-
-Any
-
-</div>
-
-
-</div>
-
-
-<h3>Technologies / Career Areas</h3>
-
-
-<div class="choice-grid">
-
-
-<div
-class="choice"
-onclick="toggleStream(this,'Python')">
-
-<input type="checkbox">
-
-Python
-
-</div>
-
-
-<div
-class="choice"
-onclick="toggleStream(this,'Java')">
-
-<input type="checkbox">
-
-Java
-
-</div>
-
-
-<div
-class="choice"
-onclick="toggleStream(this,'C++')">
-
-<input type="checkbox">
-
-C++
-
-</div>
-
-
-<div
-class="choice"
-onclick="toggleStream(this,'Web Development')">
-
-<input type="checkbox">
-
-Web Development
-
-</div>
-
-
-<div
-class="choice"
-onclick="toggleStream(this,'AI/ML')">
-
-<input type="checkbox">
-
-AI / ML
-
-</div>
-
-
-<div
-class="choice"
-onclick="toggleStream(this,'Not Sure')">
-
-<input type="checkbox">
-
-Not Sure
-
-</div>
-
-
-</div>
-
-
-<div class="button-row">
-
-<button
-class="secondary-btn"
-onclick="nextStep(1)">
-
-Back
-
-</button>
-
-
-<button
-class="primary-btn"
-onclick="nextStep(3)">
-
-Continue
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- STEP 3 -->
-
-<div
-id="wizard3"
-class="card wizard-page">
-
-<h2>Your Profile</h2>
-
-<p class="subtitle">
-Enter your information for better job recommendations.
-</p>
-
 
 <div class="form-grid">
-
-
-<div class="form-group">
-
-<label>Full Name</label>
-
-<input
-id="name"
-placeholder="Your name">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Email</label>
-
-<input
-id="profileEmail"
-type="email">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Phone</label>
-
-<input
-id="phone"
-placeholder="+91">
-
-</div>
-
-
-<div class="form-group">
-
-<label>College</label>
-
-<input
-id="college"
-placeholder="College name">
-
-</div>
-
 
 <div class="form-group">
 
@@ -1051,10 +992,10 @@ placeholder="College name">
 
 <select
 id="degree"
-onchange="loadBranches()">
+onchange="updateBranches()">
 
 <option value="">
-Select Degree
+Select degree
 </option>
 
 <option>B.Tech</option>
@@ -1076,11 +1017,22 @@ Select Degree
 
 <select id="branch">
 
-<option value="">
-Select branch
+<option>
+Select degree first
 </option>
 
 </select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>College</label>
+
+<input
+id="college"
+placeholder="Your college name">
 
 </div>
 
@@ -1092,15 +1044,8 @@ Select branch
 <select id="joiningYear">
 
 <option value="">
-Select Year
+Select year
 </option>
-
-<option>2022</option>
-<option>2023</option>
-<option>2024</option>
-<option>2025</option>
-<option>2026</option>
-<option>2027</option>
 
 </select>
 
@@ -1114,16 +1059,85 @@ Select Year
 <select id="graduation">
 
 <option value="">
-Select Year
+Select year
 </option>
 
-<option>2026</option>
-<option>2027</option>
-<option>2028</option>
-<option>2029</option>
-<option>2030</option>
-
 </select>
+
+</div>
+
+</div>
+
+
+<div class="wizard-buttons">
+
+<button
+class="secondary-btn"
+onclick="nextStep(1)">
+
+BACK
+
+</button>
+
+<button
+class="primary-btn"
+onclick="nextStep(3)">
+
+NEXT
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- STEP 3 -->
+
+<div
+id="wizardStep3"
+style="display:none">
+
+<h2>
+Personal Details
+</h2>
+
+<p class="subtitle">
+These details help us personalize your career matches.
+</p>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Name</label>
+
+<input
+id="candidateName"
+placeholder="Your full name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Phone</label>
+
+<input
+id="phone"
+placeholder="Your phone number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+id="candidateEmail"
+type="email"
+readonly>
 
 </div>
 
@@ -1134,7 +1148,7 @@ Select Year
 
 <input
 id="location"
-placeholder="Hyderabad / Bangalore / Remote">
+placeholder="e.g. Hyderabad">
 
 </div>
 
@@ -1145,7 +1159,7 @@ placeholder="Hyderabad / Bangalore / Remote">
 
 <input
 id="linkedin"
-placeholder="LinkedIn profile">
+placeholder="LinkedIn profile URL">
 
 </div>
 
@@ -1156,32 +1170,32 @@ placeholder="LinkedIn profile">
 
 <input
 id="github"
-placeholder="GitHub profile">
+placeholder="GitHub profile URL">
+
+</div>
 
 </div>
 
 
-</div>
-
-
-<div class="button-row">
+<div class="wizard-buttons">
 
 <button
 class="secondary-btn"
 onclick="nextStep(2)">
 
-Back
+BACK
 
 </button>
-
 
 <button
 class="primary-btn"
-onclick="generateAnalysis()">
+onclick="analyzeProfile()">
 
-Analyze My Career
+ANALYZE MY CAREER
 
 </button>
+
+</div>
 
 </div>
 
@@ -1192,119 +1206,245 @@ Analyze My Career
 </section>
 
 
-<!-- =========================================
-     ANALYSIS PAGE
-========================================= -->
+<!-- ANALYSIS -->
 
 <section id="analysisPage" class="page">
 
 <div class="analysis">
 
-<div class="analysis-icon">
-🤖
-</div>
+<div class="analysis-box">
 
-<h1>Career Analysis Complete</h1>
+<div class="loader"></div>
 
-<p>
-Your profile, education and career preferences have been analyzed.
+<h2>
+AI is analyzing your career profile...
+</h2>
+
+<p
+id="analysisText"
+class="subtitle">
+
+Matching your skills with suitable opportunities.
+
 </p>
 
-<button
-class="primary-btn"
-style="max-width:350px"
-onclick="showResults()">
-
-View My Job Matches
-
-</button>
+</div>
 
 </div>
 
 </section>
 
 
-<!-- =========================================
-     RESULTS
-========================================= -->
+<!-- RESULTS -->
 
 <section id="resultsPage" class="page">
 
-<div class="results">
+<div class="container results">
 
-<h1>Recommended Jobs</h1>
+<div class="card profile-summary">
 
-<p class="subtitle">
-AI-powered job recommendations based on your profile.
+<h2>
+Your AI Career Analysis
+</h2>
+
+<p
+id="profileMessage"
+class="subtitle">
 </p>
 
+<div class="profile-stats">
 
-<div class="profile-summary">
-
-
-<div class="stat">
-
-Profile Match
-
-<strong id="profileMatch">
-94%
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-Skills
+<div class="profile-stat">
 
 <strong id="skillCount">
 0
 </strong>
 
+<span>Skills</span>
+
 </div>
 
 
-<div class="stat">
+<div class="profile-stat">
 
-Opportunities
+<strong id="matchScore">
+0%
+</strong>
+
+<span>Top Match</span>
+
+</div>
+
+
+<div class="profile-stat">
 
 <strong id="jobCount">
 0
 </strong>
 
+<span>Jobs Found</span>
+
 </div>
 
 
+<div class="profile-stat">
+
+<strong id="careerModeResult">
+-
+</strong>
+
+<span>Career Path</span>
+
+</div>
+
+</div>
+
 </div>
 
 
-<h2>Best Opportunities For You</h2>
+<div style="margin-bottom:20px">
+
+<h2>
+Recommended Jobs
+</h2>
+
+<p class="subtitle">
+Jobs matched to your profile.
+</p>
+
+</div>
+
 
 <div
-id="jobsContainer"
-class="jobs">
+id="jobGrid"
+class="job-grid">
 </div>
-
-
-<br>
-
-
-<button
-class="secondary-btn"
-onclick="showReport()">
-
-View Career Report
-
-</button>
 
 </div>
 
 </section>
 
 
-<!-- =========================================
-     JOB MODAL
-========================================= -->
+<!-- SUCCESS -->
+
+<section id="successPage" class="page">
+
+<div class="container">
+
+<div class="card success-box">
+
+<div class="success-icon">
+🎉
+</div>
+
+<h2>
+Application Ready!
+</h2>
+
+<p
+id="successText"
+class="subtitle">
+</p>
+
+<button
+class="primary-btn"
+style="width:auto;padding:14px 25px"
+onclick="showCareerReport()">
+
+VIEW CAREER REPORT
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REPORT -->
+
+<section id="reportPage" class="page">
+
+<div class="container report">
+
+<div class="section-title">
+
+<h2>
+Your Career Report
+</h2>
+
+<p class="subtitle">
+AI-generated summary of your career profile.
+</p>
+
+</div>
+
+
+<div class="card report-card">
+
+<h3>
+Career Profile
+</h3>
+
+<p id="reportProfile">
+</p>
+
+</div>
+
+
+<div class="card report-card">
+
+<h3>
+Recommended Skills
+</h3>
+
+<ul
+class="report-list"
+id="recommendedSkills">
+</ul>
+
+</div>
+
+
+<div class="card report-card">
+
+<h3>
+Career Suggestions
+</h3>
+
+<ul class="report-list">
+
+<li>Continue building practical projects.</li>
+
+<li>Keep your resume updated with measurable achievements.</li>
+
+<li>Practice technical and communication interviews.</li>
+
+<li>Apply consistently to roles matching your current skill level.</li>
+
+</ul>
+
+</div>
+
+
+<div class="card report-card">
+
+<h3>
+CareerConnect AI Recommendation
+</h3>
+
+<p id="finalRecommendation">
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- JOB MODAL -->
 
 <div
 id="jobModal"
@@ -1314,54 +1454,54 @@ class="modal">
 
 <span
 class="close"
-onclick="closeJob()">
+onclick="closeJobModal()">
 
-×
+&times;
 
 </span>
 
-
-<h2 id="modalTitle"></h2>
+<h2 id="modalTitle">
+</h2>
 
 <p
 id="modalCompany"
 class="company">
 </p>
 
-<br>
+<p
+id="modalLocation"
+class="job-meta">
+</p>
 
-<p id="modalDescription"></p>
+<p
+id="modalDescription"
+class="subtitle">
+</p>
 
-<br>
-
-<h3>Required Skills</h3>
+<h3>
+Required Skills
+</h3>
 
 <div
 id="modalSkills"
-class="tags">
+class="skills"
+style="margin-top:12px">
 </div>
 
+<h3>
+Skill to Improve
+</h3>
 
-<h3>Skill To Improve</h3>
-
-<p id="modalMissing"></p>
-
-<br>
-
-
-<p class="match">
-
-AI Match:
-<span id="modalMatch"></span>%
-
+<p
+id="modalMissing"
+class="subtitle">
 </p>
-
 
 <button
 class="primary-btn"
 onclick="applyJob()">
 
-Apply Now
+APPLY NOW
 
 </button>
 
@@ -1370,163 +1510,18 @@ Apply Now
 </div>
 
 
-<!-- =========================================
-     SUCCESS
-========================================= -->
+<div class="footer">
 
-<section id="successPage" class="page">
-
-<div class="success-page">
-
-<div class="success-icon">
-🎉
-</div>
-
-<h1>Application Started!</h1>
-
-<p class="subtitle">
-Your application for the selected job has been prepared.
-CareerConnect AI has also identified the skills you can improve.
-</p>
-
-
-<button
-class="primary-btn"
-style="max-width:300px"
-onclick="showResults()">
-
-Back To Jobs
-
-</button>
+CareerConnect AI © 2026 — AI-powered employment platform
 
 </div>
-
-</section>
-
-
-<!-- =========================================
-     CAREER REPORT
-========================================= -->
-
-<section id="reportPage" class="page">
-
-<div class="report">
-
-<h1>Your Career Report</h1>
-
-<p class="subtitle">
-Personalized insights generated from your CareerConnect AI profile.
-</p>
-
-
-<div class="report-section">
-
-<h2>👤 Profile</h2>
-
-<br>
-
-<p>
-<strong>Name:</strong>
-<span id="reportName"></span>
-</p>
-
-<p>
-<strong>Degree:</strong>
-<span id="reportDegree"></span>
-</p>
-
-<p>
-<strong>Branch:</strong>
-<span id="reportBranch"></span>
-</p>
-
-<p>
-<strong>College:</strong>
-<span id="reportCollege"></span>
-</p>
-
-<p>
-<strong>Location:</strong>
-<span id="reportLocation"></span>
-</p>
-
-</div>
-
-
-<div class="report-section">
-
-<h2>🎯 Career Direction</h2>
-
-<br>
-
-<p id="careerDirection"></p>
-
-</div>
-
-
-<div class="report-section">
-
-<h2>💪 Recommended Skills</h2>
-
-<br>
-
-<ul id="recommendedSkills"></ul>
-
-</div>
-
-
-<div class="report-section">
-
-<h2>📈 Career Advice</h2>
-
-<br>
-
-<ul>
-
-<li>
-Build 2-3 practical projects.
-</li>
-
-<li>
-Keep your GitHub profile active.
-</li>
-
-<li>
-Practice technical interview questions.
-</li>
-
-<li>
-Improve your resume.
-</li>
-
-<li>
-Apply consistently to suitable opportunities.
-</li>
-
-</ul>
-
-</div>
-
-
-<button
-class="primary-btn"
-onclick="showResults()">
-
-Back To Jobs
-
-</button>
-
-</div>
-
-</section>
-
 
 
 <script>
 
-/* =====================================================
-   EMAILJS
-===================================================== */
+/* =========================================
+   EMAILJS CONFIGURATION
+========================================= */
 
 const EMAILJS_PUBLIC_KEY =
 "NVyFS_3DHpCingL7k";
@@ -1539,23 +1534,28 @@ const EMAILJS_TEMPLATE_ID =
 
 
 emailjs.init({
-    publicKey:EMAILJS_PUBLIC_KEY
+    publicKey: EMAILJS_PUBLIC_KEY
 });
 
 
-/* =====================================================
-   LOGIN VARIABLES
-===================================================== */
+/* =========================================
+   GLOBAL VARIABLES
+========================================= */
 
 let generatedOTP = "";
+
 let verifiedEmail = "";
+
 let otpTime = 0;
+
 let gmailVerified = false;
 
+let selectedTechs = [];
 
-/* =====================================================
-   USER
-===================================================== */
+let selectedJob = null;
+
+let currentStep = 1;
+
 
 let user = {
 
@@ -1579,592 +1579,135 @@ let user = {
 };
 
 
-let selectedJob = null;
+/* =========================================
+   JOB DATA
+========================================= */
 
+const jobs = [
 
-/* =====================================================
-   SEND OTP
-===================================================== */
+{
+title:"Python Developer",
+company:"TechNova Solutions",
+type:"Full-time",
+stream:"Python",
+location:"Hyderabad",
+match:94,
+skills:["Python","Django","SQL","REST API"],
+missing:["Docker"],
+description:
+"Work with the development team to build Python backend applications, APIs and business solutions."
+},
 
-function sendOTP(){
+{
+title:"Python Intern",
+company:"CodeWorks",
+type:"Internship",
+stream:"Python",
+location:"Bangalore",
+match:91,
+skills:["Python","Git","SQL"],
+missing:["Django"],
+description:
+"Join our development team and gain practical experience building Python applications."
+},
 
-    const email =
-        document
-        .getElementById("loginEmail")
-        .value
-        .trim();
+{
+title:"Backend Developer",
+company:"CloudByte",
+type:"Full-time",
+stream:"Python",
+location:"Bangalore",
+match:88,
+skills:["Python","SQL","REST API"],
+missing:["AWS"],
+description:
+"Develop backend services and APIs for scalable cloud applications."
+},
 
-    const otpSection =
-        document
-        .getElementById("otpSection");
+{
+title:"Java Developer",
+company:"InnoTech",
+type:"Full-time",
+stream:"Java",
+location:"Hyderabad",
+match:93,
+skills:["Java","Spring Boot","SQL"],
+missing:["Docker"],
+description:
+"Build enterprise applications using Java and Spring Boot."
+},
 
-    const status =
-        document
-        .getElementById("otpStatus");
+{
+title:"Java Intern",
+company:"NextGen Labs",
+type:"Internship",
+stream:"Java",
+location:"Chennai",
+match:89,
+skills:["Java","OOP","SQL"],
+missing:["Spring Boot"],
+description:
+"Learn professional Java development while working with an experienced engineering team."
+},
 
+{
+title:"Frontend Developer",
+company:"PixelSoft",
+type:"Full-time",
+stream:"Web Development",
+location:"Bangalore",
+match:95,
+skills:["HTML","CSS","JavaScript","React"],
+missing:["TypeScript"],
+description:
+"Create responsive and modern web applications for customers."
+},
 
-    /* CHECK GMAIL */
+{
+title:"Frontend Intern",
+company:"DesignStack",
+type:"Internship",
+stream:"Web Development",
+location:"Hyderabad",
+match:92,
+skills:["HTML","CSS","JavaScript"],
+missing:["React"],
+description:
+"Work with designers and developers to create attractive web experiences."
+},
 
-    if(
-        !/^[a-zA-Z0-9._%+-]+@gmail\.com$/i
-        .test(email)
-    ){
+{
+title:"AI/ML Intern",
+company:"AI Labs India",
+type:"Internship",
+stream:"AI/ML",
+location:"Bangalore",
+match:96,
+skills:["Python","Machine Learning","Pandas","NumPy"],
+missing:["Deep Learning"],
+description:
+"Work on machine learning projects and real-world AI solutions."
+},
 
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Enter a valid Gmail address.";
-
-        return;
-
-    }
-
-
-    /* GENERATE OTP */
-
-    generatedOTP =
-        Math
-        .floor(
-            100000 +
-            Math.random() * 900000
-        )
-        .toString();
-
-
-    verifiedEmail = email;
-
-    otpTime = Date.now();
-
-    gmailVerified = false;
-
-
-    /*
-       IMPORTANT:
-       OTP BOX APPEARS IMMEDIATELY.
-       EMAILJS DOES NOT BLOCK THE PAGE.
-    */
-
-    otpSection.style.display =
-        "block";
-
-
-    status.className =
-        "status info-text";
-
-    status.innerText =
-        "⏳ Sending OTP...";
-
-
-    document
-    .getElementById("loginOTP")
-    .value = "";
-
-
-    document
-    .getElementById("loginOTP")
-    .focus();
-
-
-    /* SEND EMAIL IN BACKGROUND */
-
-    emailjs.send(
-
-        EMAILJS_SERVICE_ID,
-
-        EMAILJS_TEMPLATE_ID,
-
-        {
-
-            to_email:email,
-
-            candidate_name:
-                "CareerConnect User",
-
-            otp:generatedOTP
-
-        }
-
-    )
-
-    .then(function(){
-
-        status.className =
-            "status success-text";
-
-        status.innerText =
-            "✅ OTP sent! Check your Gmail.";
-
-    })
-
-    .catch(function(error){
-
-        console.error(
-            "EmailJS Error:",
-            error
-        );
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Email failed. Check EmailJS Gmail connection.";
-
-    });
-
+{
+title:"C++ Developer",
+company:"CoreTech",
+type:"Full-time",
+stream:"C++",
+location:"Pune",
+match:90,
+skills:["C++","OOP","DSA"],
+missing:["Linux"],
+description:
+"Develop high-performance software using C++ and modern development practices."
 }
 
+];
 
-/* =====================================================
-   VERIFY OTP
-===================================================== */
 
-function verifyOTP(){
-
-    const email =
-        document
-        .getElementById("loginEmail")
-        .value
-        .trim();
-
-    const enteredOTP =
-        document
-        .getElementById("loginOTP")
-        .value
-        .trim();
-
-    const status =
-        document
-        .getElementById("otpStatus");
-
-
-    /* EMAIL MUST BE SAME */
-
-    if(email !== verifiedEmail){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Email changed. Send OTP again.";
-
-        return;
-
-    }
-
-
-    /* OTP LENGTH */
-
-    if(enteredOTP.length !== 6){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Enter the 6-digit OTP.";
-
-        return;
-
-    }
-
-
-    /* EXPIRY */
-
-    if(
-        Date.now() - otpTime
-        > 300000
-    ){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ OTP expired. Send a new OTP.";
-
-        return;
-
-    }
-
-
-    /* CHECK OTP */
-
-    if(enteredOTP !== generatedOTP){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Wrong OTP. Try again.";
-
-        return;
-
-    }
-
-
-    /* VERIFIED */
-
-    gmailVerified = true;
-
-
-    status.className =
-        "status success-text";
-
-    status.innerText =
-        "✅ Gmail VERIFIED successfully!";
-
-
-    /* PASSWORD APPEARS IMMEDIATELY */
-
-    document
-    .getElementById("passwordSection")
-    .style.display =
-        "block";
-
-
-    document
-    .getElementById("loginPassword")
-    .focus();
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-function login(){
-
-    if(!gmailVerified){
-
-        alert(
-            "Please verify your Gmail first."
-        );
-
-        return;
-
-    }
-
-
-    const password =
-        document
-        .getElementById("loginPassword")
-        .value;
-
-
-    if(password.length < 8){
-
-        alert(
-            "Password must contain at least 8 characters."
-        );
-
-        return;
-
-    }
-
-
-    user.email =
-        document
-        .getElementById("loginEmail")
-        .value
-        .trim();
-
-    user.password = password;
-
-
-    document
-    .getElementById("navUser")
-    .innerText =
-        user.email;
-
-
-    /* NO DELAY */
-
-    showPage("homePage");
-
-}
-
-
-/* =====================================================
-   DEMO LOGIN
-===================================================== */
-
-function demoLogin(){
-
-    gmailVerified = true;
-
-    user.email =
-        "demo@gmail.com";
-
-
-    document
-    .getElementById("navUser")
-    .innerText =
-        "demo@gmail.com";
-
-
-    showPage("homePage");
-
-}
-
-
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
-
-function showPage(pageId){
-
-    document
-    .querySelectorAll(".page")
-    .forEach(function(page){
-
-        page.classList.remove("active");
-
-    });
-
-
-    document
-    .getElementById(pageId)
-    .classList.add("active");
-
-
-    window.scrollTo(0,0);
-
-}
-
-
-/* =====================================================
-   START CAREER
-===================================================== */
-
-function startCareer(mode){
-
-    user.careerMode = mode;
-
-    showPage("wizardPage");
-
-    nextStep(1);
-
-}
-
-
-/* =====================================================
-   WIZARD
-===================================================== */
-
-function nextStep(step){
-
-    document
-    .querySelectorAll(".wizard-page")
-    .forEach(function(page){
-
-        page.classList.remove("active");
-
-    });
-
-
-    document
-    .getElementById("wizard"+step)
-    .classList.add("active");
-
-
-    document
-    .querySelectorAll(".step")
-    .forEach(function(stepElement){
-
-        stepElement.classList.remove("active");
-
-    });
-
-
-    document
-    .getElementById("stepLabel"+step)
-    .classList.add("active");
-
-
-    const progress =
-        document.getElementById("progressBar");
-
-
-    if(step === 1){
-
-        progress.style.width =
-            "33%";
-
-    }
-
-
-    if(step === 2){
-
-        progress.style.width =
-            "66%";
-
-    }
-
-
-    if(step === 3){
-
-        progress.style.width =
-            "100%";
-
-
-        document
-        .getElementById("profileEmail")
-        .value =
-            user.email;
-
-    }
-
-}
-
-
-/* =====================================================
-   RESUME
-===================================================== */
-
-document
-.getElementById("resumeFile")
-.addEventListener(
-    "change",
-    function(){
-
-        const file =
-            this.files[0];
-
-        if(!file){
-            return;
-        }
-
-
-        user.resume =
-            file.name;
-
-
-        document
-        .getElementById("resumeName")
-        .innerText =
-            "✓ Selected: " +
-            file.name;
-
-    }
-);
-
-
-function skipResume(){
-
-    user.resume =
-        "Not uploaded";
-
-    nextStep(2);
-
-}
-
-
-/* =====================================================
-   JOB TYPE
-===================================================== */
-
-function selectJobType(element,type){
-
-    document
-    .querySelectorAll(
-        '[name="jobType"]'
-    )
-    .forEach(function(input){
-
-        input.checked = false;
-
-    });
-
-
-    document
-    .querySelectorAll(".choice")
-    .forEach(function(choice){
-
-        const radio =
-            choice.querySelector(
-                '[name="jobType"]'
-            );
-
-        if(radio){
-
-            choice.classList.remove(
-                "selected"
-            );
-
-        }
-
-    });
-
-
-    element.classList.add(
-        "selected"
-    );
-
-
-    element
-    .querySelector("input")
-    .checked = true;
-
-
-    user.jobType = type;
-
-}
-
-
-/* =====================================================
-   STREAMS
-===================================================== */
-
-function toggleStream(element,stream){
-
-    const checkbox =
-        element.querySelector("input");
-
-
-    checkbox.checked =
-        !checkbox.checked;
-
-
-    if(checkbox.checked){
-
-        element.classList.add(
-            "selected"
-        );
-
-
-        if(
-            !user.streams.includes(stream)
-        ){
-
-            user.streams.push(stream);
-
-        }
-
-    }
-    else{
-
-        element.classList.remove(
-            "selected"
-        );
-
-
-        user.streams =
-            user.streams.filter(
-                function(item){
-
-                    return item !== stream;
-
-                }
-            );
-
-    }
-
-}
-
-
-/* =====================================================
-   BRANCHES
-===================================================== */
+/* =========================================
+   BRANCH DATA
+========================================= */
 
 const branches = {
 
@@ -2337,416 +1880,709 @@ const branches = {
 };
 
 
-/* =====================================================
-   LOAD BRANCHES
-===================================================== */
+/* =========================================
+   LOGIN
+========================================= */
 
-function loadBranches(){
+function sendOTP(){
 
-    const degree =
-        document
-        .getElementById("degree")
-        .value;
+    const email =
+        document.getElementById("loginEmail")
+        .value
+        .trim();
 
+    const otpSection =
+        document.getElementById("otpSection");
 
-    const branch =
-        document
-        .getElementById("branch");
-
-
-    branch.innerHTML =
-        '<option value="">Select branch</option>';
+    const status =
+        document.getElementById("otpStatus");
 
 
-    if(!branches[degree]){
+    if(
+        !/^[a-zA-Z0-9._%+-]+@gmail\.com$/i
+        .test(email)
+    ){
+
+        status.className =
+            "status error-text";
+
+        status.innerText =
+            "❌ Enter a valid Gmail address.";
+
         return;
     }
 
 
-    branches[degree]
-    .forEach(function(item){
-
-        const option =
-            document.createElement(
-                "option"
-            );
+    generatedOTP =
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        ).toString();
 
 
-        option.value = item;
+    verifiedEmail = email;
 
-        option.textContent = item;
+    otpTime = Date.now();
 
-        branch.appendChild(option);
+    gmailVerified = false;
+
+
+    /*
+       IMPORTANT:
+       OTP section appears immediately.
+       There is NO artificial delay.
+    */
+
+    otpSection.style.display =
+        "block";
+
+
+    status.className =
+        "status info-text";
+
+    status.innerText =
+        "⏳ Sending OTP to your Gmail...";
+
+
+    document.getElementById(
+        "loginOTP"
+    ).value = "";
+
+
+    document.getElementById(
+        "loginOTP"
+    ).focus();
+
+
+    emailjs.send(
+
+        EMAILJS_SERVICE_ID,
+
+        EMAILJS_TEMPLATE_ID,
+
+        {
+
+            to_email:email,
+
+            candidate_name:
+                "CareerConnect User",
+
+            otp:generatedOTP
+
+        }
+
+    )
+    .then(function(){
+
+        status.className =
+            "status success-text";
+
+        status.innerText =
+            "✅ OTP sent! Check your Gmail.";
+
+    })
+
+    .catch(function(error){
+
+        console.error(
+            "EmailJS Error:",
+            error
+        );
+
+        status.className =
+            "status error-text";
+
+        status.innerText =
+            "❌ Email failed. Reconnect Gmail in EmailJS.";
 
     });
 
 }
 
 
-/* =====================================================
-   COLLECT PROFILE
-===================================================== */
+/* =========================================
+   VERIFY OTP
+========================================= */
 
-function collectProfile(){
+function verifyOTP(){
 
-    user.name =
-        document
-        .getElementById("name")
-        .value
-        .trim();
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+
+    const enteredOTP =
+        document.getElementById(
+            "loginOTP"
+        ).value.trim();
+
+
+    const status =
+        document.getElementById(
+            "otpStatus"
+        );
+
+
+    if(email !== verifiedEmail){
+
+        status.className =
+            "status error-text";
+
+        status.innerText =
+            "❌ Email changed. Send OTP again.";
+
+        return;
+
+    }
+
+
+    if(enteredOTP.length !== 6){
+
+        status.className =
+            "status error-text";
+
+        status.innerText =
+            "❌ Enter the 6-digit OTP.";
+
+        return;
+
+    }
+
+
+    if(
+        Date.now() - otpTime >
+        300000
+    ){
+
+        status.className =
+            "status error-text";
+
+        status.innerText =
+            "❌ OTP expired. Send a new OTP.";
+
+        return;
+
+    }
+
+
+    if(
+        enteredOTP !== generatedOTP
+    ){
+
+        status.className =
+            "status error-text";
+
+        status.innerText =
+            "❌ Wrong OTP. Try again.";
+
+        return;
+
+    }
+
+
+    gmailVerified = true;
+
+
+    status.className =
+        "status success-text";
+
+    status.innerText =
+        "✅ Gmail VERIFIED successfully!";
+
+
+    document.getElementById(
+        "passwordSection"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "loginPassword"
+    ).focus();
+
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+function login(){
+
+    if(!gmailVerified){
+
+        alert(
+            "Please verify your Gmail first."
+        );
+
+        return;
+
+    }
+
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    if(password.length < 8){
+
+        alert(
+            "Password must contain at least 8 characters."
+        );
+
+        return;
+
+    }
 
 
     user.email =
-        document
-        .getElementById("profileEmail")
-        .value
-        .trim();
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+
+    user.password =
+        password;
+
+
+    document.getElementById(
+        "navUser"
+    ).innerText =
+        user.email;
+
+
+    document.getElementById(
+        "candidateEmail"
+    ).value =
+        user.email;
+
+
+    showPage("homePage");
+
+}
+
+
+/* =========================================
+   DEMO LOGIN
+========================================= */
+
+function demoLogin(){
+
+    gmailVerified = true;
+
+    user.email =
+        "demo@gmail.com";
+
+
+    document.getElementById(
+        "navUser"
+    ).innerText =
+        "demo@gmail.com";
+
+
+    document.getElementById(
+        "candidateEmail"
+    ).value =
+        "demo@gmail.com";
+
+
+    showPage("homePage");
+
+}
+
+
+/* =========================================
+   PAGE NAVIGATION
+========================================= */
+
+function showPage(pageId){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page){
+
+            page.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(pageId)
+        .classList.add("active");
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"instant"
+    });
+
+}
+
+
+/* =========================================
+   CAREER MODE
+========================================= */
+
+function showCareerModes(){
+
+    document.getElementById(
+        "careerModes"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "careerModes"
+    ).scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function selectCareerMode(mode){
+
+    user.careerMode =
+        mode;
+
+
+    showPage("wizardPage");
+
+    currentStep = 1;
+
+    updateWizard();
+
+}
+
+
+/* =========================================
+   TECHNOLOGIES
+========================================= */
+
+function toggleTech(element,tech){
+
+    element.classList.toggle(
+        "selected"
+    );
+
+
+    if(
+        selectedTechs.includes(tech)
+    ){
+
+        selectedTechs =
+            selectedTechs.filter(
+                function(item){
+                    return item !== tech;
+                }
+            );
+
+    }else{
+
+        selectedTechs.push(tech);
+
+    }
+
+}
+
+
+/* =========================================
+   WIZARD
+========================================= */
+
+function nextStep(step){
+
+    currentStep = step;
+
+    updateWizard();
+
+}
+
+
+function updateWizard(){
+
+    document.getElementById(
+        "wizardStep1"
+    ).style.display =
+        currentStep === 1
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "wizardStep2"
+    ).style.display =
+        currentStep === 2
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "wizardStep3"
+    ).style.display =
+        currentStep === 3
+        ? "block"
+        : "none";
+
+
+    for(let i=1;i<=3;i++){
+
+        document.getElementById(
+            "stepIndicator"+i
+        ).classList.toggle(
+            "active",
+            i <= currentStep
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   BRANCH DROPDOWN
+========================================= */
+
+function updateBranches(){
+
+    const degree =
+        document.getElementById(
+            "degree"
+        ).value;
+
+
+    const branch =
+        document.getElementById(
+            "branch"
+        );
+
+
+    branch.innerHTML = "";
+
+
+    if(!branches[degree]){
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.textContent =
+            "Select degree first";
+
+        branch.appendChild(option);
+
+        return;
+
+    }
+
+
+    branches[degree].forEach(
+        function(item){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = item;
+
+            option.textContent = item;
+
+            branch.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   YEAR DROPDOWNS
+========================================= */
+
+function loadYears(){
+
+    const joining =
+        document.getElementById(
+            "joiningYear"
+        );
+
+
+    const graduation =
+        document.getElementById(
+            "graduation"
+        );
+
+
+    for(
+        let year=2015;
+        year<=2035;
+        year++
+    ){
+
+        const option1 =
+            document.createElement(
+                "option"
+            );
+
+        option1.value =
+            year;
+
+        option1.textContent =
+            year;
+
+        joining.appendChild(
+            option1
+        );
+
+
+        const option2 =
+            document.createElement(
+                "option"
+            );
+
+        option2.value =
+            year;
+
+        option2.textContent =
+            year;
+
+        graduation.appendChild(
+            option2
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   ANALYZE PROFILE
+========================================= */
+
+function analyzeProfile(){
+
+    user.name =
+        document.getElementById(
+            "candidateName"
+        ).value.trim();
 
 
     user.phone =
-        document
-        .getElementById("phone")
-        .value
-        .trim();
+        document.getElementById(
+            "phone"
+        ).value.trim();
 
 
     user.college =
-        document
-        .getElementById("college")
-        .value
-        .trim();
+        document.getElementById(
+            "college"
+        ).value.trim();
 
 
     user.degree =
-        document
-        .getElementById("degree")
-        .value;
+        document.getElementById(
+            "degree"
+        ).value;
 
 
     user.branch =
-        document
-        .getElementById("branch")
-        .value;
+        document.getElementById(
+            "branch"
+        ).value;
 
 
     user.joiningYear =
-        document
-        .getElementById("joiningYear")
-        .value;
+        document.getElementById(
+            "joiningYear"
+        ).value;
 
 
     user.graduation =
-        document
-        .getElementById("graduation")
-        .value;
+        document.getElementById(
+            "graduation"
+        ).value;
 
 
     user.location =
-        document
-        .getElementById("location")
-        .value
-        .trim();
+        document.getElementById(
+            "location"
+        ).value.trim();
 
 
     user.linkedin =
-        document
-        .getElementById("linkedin")
-        .value
-        .trim();
+        document.getElementById(
+            "linkedin"
+        ).value.trim();
 
 
     user.github =
-        document
-        .getElementById("github")
-        .value
-        .trim();
-
-}
+        document.getElementById(
+            "github"
+        ).value.trim();
 
 
-/* =====================================================
-   ANALYSIS
-===================================================== */
-
-function generateAnalysis(){
-
-    collectProfile();
+    user.jobType =
+        document.getElementById(
+            "jobType"
+        ).value;
 
 
-    if(!user.name){
+    user.streams =
+        [...selectedTechs];
 
-        alert(
-            "Please enter your name."
+
+    const resume =
+        document.getElementById(
+            "resume"
         );
 
-        return;
 
-    }
+    user.resume =
+        resume.files.length > 0
+        ? resume.files[0].name
+        : "Not uploaded";
 
-
-    if(!user.degree){
-
-        alert(
-            "Please select your degree."
-        );
-
-        return;
-
-    }
-
-
-    if(!user.branch){
-
-        alert(
-            "Please select your branch."
-        );
-
-        return;
-
-    }
-
-
-    /* NO DELAY */
 
     showPage("analysisPage");
 
+
+    /*
+       The analysis is intentionally fast.
+       No long artificial delay.
+    */
+
+    setTimeout(function(){
+
+        showResults();
+
+    },700);
+
 }
 
 
-/* =====================================================
-   JOB DATABASE
-===================================================== */
-
-const jobs = [
-
-{
-title:"Python Developer",
-company:"TechNova Solutions",
-type:"Full-time",
-stream:"Python",
-location:"Hyderabad",
-match:94,
-skills:[
-"Python",
-"Django",
-"SQL",
-"REST API"
-],
-missing:[
-"Docker"
-],
-description:
-"Build Python backend applications, APIs and business solutions."
-},
-
-{
-title:"Python Intern",
-company:"CodeWorks",
-type:"Internship",
-stream:"Python",
-location:"Bangalore",
-match:91,
-skills:[
-"Python",
-"Git",
-"SQL"
-],
-missing:[
-"Django"
-],
-description:
-"Gain practical experience building Python applications."
-},
-
-{
-title:"Backend Developer",
-company:"CloudByte",
-type:"Full-time",
-stream:"Python",
-location:"Bangalore",
-match:88,
-skills:[
-"Python",
-"SQL",
-"REST API"
-],
-missing:[
-"AWS"
-],
-description:
-"Develop backend services and APIs for scalable cloud applications."
-},
-
-{
-title:"Java Developer",
-company:"InnoTech",
-type:"Full-time",
-stream:"Java",
-location:"Hyderabad",
-match:93,
-skills:[
-"Java",
-"Spring Boot",
-"SQL"
-],
-missing:[
-"Docker"
-],
-description:
-"Build enterprise applications using Java and Spring Boot."
-},
-
-{
-title:"Java Intern",
-company:"NextGen Labs",
-type:"Internship",
-stream:"Java",
-location:"Chennai",
-match:89,
-skills:[
-"Java",
-"OOP",
-"SQL"
-],
-missing:[
-"Spring Boot"
-],
-description:
-"Learn professional Java development with an experienced team."
-},
-
-{
-title:"Frontend Developer",
-company:"PixelSoft",
-type:"Full-time",
-stream:"Web Development",
-location:"Bangalore",
-match:95,
-skills:[
-"HTML",
-"CSS",
-"JavaScript",
-"React"
-],
-missing:[
-"TypeScript"
-],
-description:
-"Create responsive and modern web applications."
-},
-
-{
-title:"Frontend Intern",
-company:"DesignStack",
-type:"Internship",
-stream:"Web Development",
-location:"Hyderabad",
-match:92,
-skills:[
-"HTML",
-"CSS",
-"JavaScript"
-],
-missing:[
-"React"
-],
-description:
-"Work with designers and developers to create web experiences."
-},
-
-{
-title:"AI/ML Intern",
-company:"AI Labs India",
-type:"Internship",
-stream:"AI/ML",
-location:"Bangalore",
-match:96,
-skills:[
-"Python",
-"Machine Learning",
-"Pandas",
-"NumPy"
-],
-missing:[
-"Deep Learning"
-],
-description:
-"Work on machine learning projects and real-world AI solutions."
-},
-
-{
-title:"C++ Developer",
-company:"CoreTech",
-type:"Full-time",
-stream:"C++",
-location:"Pune",
-match:90,
-skills:[
-"C++",
-"OOP",
-"DSA"
-],
-missing:[
-"Linux"
-],
-description:
-"Develop high-performance software using C++."
-}
-
-];
-
-
-/* =====================================================
+/* =========================================
    SHOW RESULTS
-===================================================== */
+========================================= */
 
 function showResults(){
 
-    const container =
-        document
-        .getElementById("jobsContainer");
+    let filteredJobs =
+        jobs.slice();
 
-
-    container.innerHTML = "";
-
-
-    let filteredJobs = jobs;
-
-
-    /* STREAM */
-
-    if(
-        user.streams.length > 0 &&
-        !user.streams.includes("Not Sure")
-    ){
-
-        const streamJobs =
-            jobs.filter(function(job){
-
-                return user.streams
-                .includes(job.stream);
-
-            });
-
-
-        if(streamJobs.length > 0){
-
-            filteredJobs =
-                streamJobs;
-
-        }
-
-    }
-
-
-    /* JOB TYPE */
 
     if(
         user.jobType &&
         user.jobType !== "Any"
     ){
 
-        const typeJobs =
+        const sameType =
             filteredJobs.filter(
                 function(job){
 
@@ -2757,39 +2593,44 @@ function showResults(){
             );
 
 
-        if(typeJobs.length > 0){
+        if(sameType.length > 0){
 
             filteredJobs =
-                typeJobs;
+                sameType;
 
         }
 
     }
 
 
-    /* LOCATION */
+    if(
+        user.streams.length > 0 &&
+        !user.streams.includes("Not Sure")
+    ){
 
-    if(user.location){
-
-        const locationJobs =
+        const skillJobs =
             filteredJobs.filter(
                 function(job){
 
-                    return job.location
-                    .toLowerCase()
-                    .includes(
-                        user.location
-                        .toLowerCase()
+                    return user.streams.some(
+                        function(skill){
+
+                            return (
+                                job.stream === skill ||
+                                job.skills.includes(skill)
+                            );
+
+                        }
                     );
 
                 }
             );
 
 
-        if(locationJobs.length > 0){
+        if(skillJobs.length > 0){
 
             filteredJobs =
-                locationJobs;
+                skillJobs;
 
         }
 
@@ -2797,29 +2638,95 @@ function showResults(){
 
 
     filteredJobs =
-        filteredJobs
-        .sort(function(a,b){
-
-            return b.match - a.match;
-
-        })
-        .slice(0,6);
+        filteredJobs.sort(
+            function(a,b){
+                return b.match-a.match;
+            }
+        );
 
 
-    document
-    .getElementById("jobCount")
-    .innerText =
+    /*
+       If filtering gives very few jobs,
+       show broader recommendations.
+    */
+
+    if(filteredJobs.length < 3){
+
+        filteredJobs =
+            jobs
+            .slice()
+            .sort(
+                function(a,b){
+                    return b.match-a.match;
+                }
+            )
+            .slice(0,6);
+
+    }
+
+
+    document.getElementById(
+        "skillCount"
+    ).innerText =
+        user.streams.length;
+
+
+    document.getElementById(
+        "matchScore"
+    ).innerText =
+        filteredJobs[0]
+        ? filteredJobs[0].match+"%"
+        : "0%";
+
+
+    document.getElementById(
+        "jobCount"
+    ).innerText =
         filteredJobs.length;
 
 
-    document
-    .getElementById("skillCount")
-    .innerText =
-        user.streams.length || 5;
+    document.getElementById(
+        "careerModeResult"
+    ).innerText =
+        user.careerMode ||
+        "Career";
 
 
-    filteredJobs.forEach(
-        function(job){
+    document.getElementById(
+        "profileMessage"
+    ).innerText =
+        "Based on your " +
+        (user.degree || "education") +
+        ", " +
+        (user.branch || "background") +
+        " and selected skills, CareerConnect AI recommends these opportunities.";
+
+
+    renderJobs(filteredJobs);
+
+
+    showPage("resultsPage");
+
+}
+
+
+/* =========================================
+   RENDER JOBS
+========================================= */
+
+function renderJobs(jobList){
+
+    const grid =
+        document.getElementById(
+            "jobGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    jobList.forEach(
+        function(job,index){
 
             const card =
                 document.createElement(
@@ -2828,292 +2735,243 @@ function showResults(){
 
 
             card.className =
-                "job-card";
+                "card job-card";
 
 
             card.innerHTML = `
 
-                <h3>${job.title}</h3>
+                <div class="job-top">
 
-                <p class="company">
-                    ${job.company}
-                </p>
+                    <div>
 
-                <p style="margin-top:8px">
+                        <h3>
+                            ${job.title}
+                        </h3>
+
+                        <p class="company">
+                            ${job.company}
+                        </p>
+
+                    </div>
+
+                    <span class="match">
+                        ${job.match}% Match
+                    </span>
+
+                </div>
+
+
+                <p class="job-meta">
                     📍 ${job.location}
-                </p>
-
-                <p style="margin-top:5px">
+                    &nbsp; • &nbsp;
                     💼 ${job.type}
                 </p>
 
-                <div class="tags">
+
+                <div class="skills">
 
                     ${job.skills.map(
                         function(skill){
 
                             return `
-                            <span class="tag">
-                                ${skill}
-                            </span>`;
+                                <span class="skill">
+                                    ${skill}
+                                </span>
+                            `;
 
                         }
                     ).join("")}
 
                 </div>
 
-                <p class="match">
-                    ${job.match}% AI Match
-                </p>
 
                 <button
                     class="primary-btn"
-                    onclick="openJob('${job.title}')">
+                    onclick="openJob(${index})">
 
-                    View Job
+                    VIEW JOB
 
                 </button>
 
             `;
 
 
-            container.appendChild(card);
+            card.dataset.jobIndex =
+                index;
+
+
+            grid.appendChild(card);
 
         }
     );
 
 
-    showPage("resultsPage");
+    /*
+       Save rendered jobs for modal indexing.
+    */
+
+    window.currentJobs =
+        jobList;
 
 }
 
 
-/* =====================================================
-   OPEN JOB
-===================================================== */
+/* =========================================
+   JOB MODAL
+========================================= */
 
-function openJob(title){
+function openJob(index){
 
     selectedJob =
-        jobs.find(function(job){
-
-            return job.title === title;
-
-        });
+        window.currentJobs[index];
 
 
     if(!selectedJob){
+
         return;
+
     }
 
 
-    document
-    .getElementById("modalTitle")
-    .innerText =
+    document.getElementById(
+        "modalTitle"
+    ).innerText =
         selectedJob.title;
 
 
-    document
-    .getElementById("modalCompany")
-    .innerText =
-        selectedJob.company +
+    document.getElementById(
+        "modalCompany"
+    ).innerText =
+        selectedJob.company;
+
+
+    document.getElementById(
+        "modalLocation"
+    ).innerText =
+        "📍 " +
+        selectedJob.location +
         " • " +
-        selectedJob.location;
+        selectedJob.type;
 
 
-    document
-    .getElementById("modalDescription")
-    .innerText =
+    document.getElementById(
+        "modalDescription"
+    ).innerText =
         selectedJob.description;
 
 
-    document
-    .getElementById("modalMatch")
-    .innerText =
-        selectedJob.match;
-
-
-    document
-    .getElementById("modalMissing")
-    .innerText =
+    document.getElementById(
+        "modalMissing"
+    ).innerText =
         selectedJob.missing.join(", ");
 
 
-    const skills =
-        document
-        .getElementById("modalSkills");
+    document.getElementById(
+        "modalSkills"
+    ).innerHTML =
+        selectedJob.skills
+        .map(
+            function(skill){
+
+                return `
+                    <span class="skill">
+                        ${skill}
+                    </span>
+                `;
+
+            }
+        )
+        .join("");
 
 
-    skills.innerHTML = "";
+    document.getElementById(
+        "jobModal"
+    ).classList.add("active");
+
+}
 
 
-    selectedJob.skills.forEach(
-        function(skill){
+function closeJobModal(){
 
-            skills.innerHTML +=
-                `<span class="tag">
-                    ${skill}
-                </span>`;
-
-        }
+    document.getElementById(
+        "jobModal"
+    ).classList.remove(
+        "active"
     );
 
-
-    document
-    .getElementById("jobModal")
-    .style.display =
-        "flex";
-
 }
 
 
-/* =====================================================
-   CLOSE JOB
-===================================================== */
-
-function closeJob(){
-
-    document
-    .getElementById("jobModal")
-    .style.display =
-        "none";
-
-}
-
-
-/* =====================================================
+/* =========================================
    APPLY
-===================================================== */
+========================================= */
 
 function applyJob(){
 
     if(!selectedJob){
+
         return;
+
     }
 
 
-    closeJob();
+    closeJobModal();
+
+
+    document.getElementById(
+        "successText"
+    ).innerText =
+        "Your profile is ready to apply for " +
+        selectedJob.title +
+        " at " +
+        selectedJob.company +
+        ".";
+
 
     showPage("successPage");
 
 }
 
 
-/* =====================================================
-   REPORT
-===================================================== */
+/* =========================================
+   CAREER REPORT
+========================================= */
 
-function showReport(){
+function showCareerReport(){
 
-    collectProfile();
+    document.getElementById(
+        "reportProfile"
+    ).innerText =
 
-
-    document
-    .getElementById("reportName")
-    .innerText =
-        user.name || "CareerConnect User";
-
-
-    document
-    .getElementById("reportDegree")
-    .innerText =
-        user.degree || "Not specified";
-
-
-    document
-    .getElementById("reportBranch")
-    .innerText =
-        user.branch || "Not specified";
+        "Career path: " +
+        (user.careerMode || "Not specified") +
+        ". Education: " +
+        (user.degree || "Not specified") +
+        " - " +
+        (user.branch || "Not specified") +
+        ". Preferred location: " +
+        (user.location || "Flexible") +
+        ".";
 
 
-    document
-    .getElementById("reportCollege")
-    .innerText =
-        user.college || "Not specified";
+    const recommended =
+        document.getElementById(
+            "recommendedSkills"
+        );
 
 
-    document
-    .getElementById("reportLocation")
-    .innerText =
-        user.location ||
-        "Open to opportunities";
-
-
-    let direction =
-        "Based on your profile, focus on technical skills, practical projects and interview preparation.";
+    let skills = [];
 
 
     if(
         user.streams.includes("Python")
     ){
 
-        direction =
-            "Your profile is suitable for Python development, backend development and AI/ML opportunities.";
-
-    }
-    else if(
-        user.streams.includes("Java")
-    ){
-
-        direction =
-            "Your profile is suitable for Java development, backend engineering and enterprise software.";
-
-    }
-    else if(
-        user.streams.includes("Web Development")
-    ){
-
-        direction =
-            "Your profile is suitable for frontend, full-stack and modern web development.";
-
-    }
-    else if(
-        user.streams.includes("AI/ML")
-    ){
-
-        direction =
-            "Your profile is suitable for AI/ML internships, machine learning and data-focused roles.";
-
-    }
-
-
-    document
-    .getElementById("careerDirection")
-    .innerText =
-        direction;
-
-
-    const list =
-        document
-        .getElementById("recommendedSkills");
-
-
-    list.innerHTML = "";
-
-
-    let recommended = [
-
-        "Data Structures & Algorithms",
-
-        "Git & GitHub",
-
-        "Communication Skills",
-
-        "Technical Interview Preparation",
-
-        "Build Real-World Projects"
-
-    ];
-
-
-    if(
-        user.streams.includes("Python")
-    ){
-
-        recommended.unshift(
-            "Django / FastAPI",
+        skills.push(
+            "Django or FastAPI",
             "SQL",
-            "REST APIs"
+            "REST APIs",
+            "Docker"
         );
 
     }
@@ -3123,10 +2981,11 @@ function showReport(){
         user.streams.includes("Java")
     ){
 
-        recommended.unshift(
+        skills.push(
             "Spring Boot",
             "SQL",
-            "REST APIs"
+            "REST APIs",
+            "Docker"
         );
 
     }
@@ -3136,10 +2995,11 @@ function showReport(){
         user.streams.includes("Web Development")
     ){
 
-        recommended.unshift(
+        skills.push(
             "JavaScript",
             "React",
-            "TypeScript"
+            "TypeScript",
+            "Git"
         );
 
     }
@@ -3149,7 +3009,7 @@ function showReport(){
         user.streams.includes("AI/ML")
     ){
 
-        recommended.unshift(
+        skills.push(
             "Machine Learning",
             "Pandas",
             "NumPy",
@@ -3159,18 +3019,45 @@ function showReport(){
     }
 
 
-    recommended
-    .slice(0,8)
-    .forEach(function(skill){
+    if(skills.length === 0){
 
-        const li =
-            document.createElement("li");
+        skills = [
+            "Communication",
+            "Problem Solving",
+            "Git",
+            "SQL",
+            "Interview Preparation"
+        ];
 
-        li.innerText = skill;
+    }
 
-        list.appendChild(li);
 
-    });
+    skills =
+        [...new Set(skills)];
+
+
+    recommended.innerHTML =
+        skills
+        .slice(0,8)
+        .map(
+            function(skill){
+
+                return `
+                    <li>${skill}</li>
+                `;
+
+            }
+        )
+        .join("");
+
+
+    document.getElementById(
+        "finalRecommendation"
+    ).innerText =
+
+        "Focus on practical projects, strengthen the missing skills " +
+        "shown in job matches, and apply consistently to roles " +
+        "where your current profile has a strong match.";
 
 
     showPage("reportPage");
@@ -3178,19 +3065,31 @@ function showReport(){
 }
 
 
-/* =====================================================
-   CLOSE MODAL OUTSIDE CLICK
-===================================================== */
+/* =========================================
+   INITIALIZE
+========================================= */
 
-document
-.getElementById("jobModal")
-.addEventListener(
+loadYears();
+
+updateBranches();
+
+
+/* =========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================= */
+
+document.getElementById(
+    "jobModal"
+).addEventListener(
     "click",
     function(event){
 
-        if(event.target === this){
+        if(
+            event.target ===
+            this
+        ){
 
-            closeJob();
+            closeJobModal();
 
         }
 
@@ -3200,4 +3099,5 @@ document
 </script>
 
 </body>
+
 </html>
