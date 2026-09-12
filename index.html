@@ -1,3103 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CareerConnect AI</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    background:#f5f7fb;
-    color:#172033;
-}
-
-.navbar{
-    height:70px;
-    background:#ffffff;
-    border-bottom:1px solid #e5e7eb;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.logo{
-    font-size:22px;
-    font-weight:800;
-    color:#2563eb;
-}
-
-.nav-user{
-    font-size:14px;
-    color:#667085;
-}
-
-.page{
-    display:none;
-    min-height:calc(100vh - 70px);
-}
-
-.page.active{
-    display:block;
-}
-
-.container{
-    width:90%;
-    max-width:1100px;
-    margin:auto;
-}
-
-.login-container{
-    min-height:calc(100vh - 70px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:30px;
-}
-
-.card{
-    background:#ffffff;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    box-shadow:0 10px 30px rgba(0,0,0,.06);
-}
-
-.login-card{
-    width:430px;
-    padding:35px;
-}
-
-h1{
-    font-size:38px;
-    margin-bottom:15px;
-}
-
-h2{
-    font-size:28px;
-    margin-bottom:10px;
-}
-
-h3{
-    margin-bottom:8px;
-}
-
-.subtitle{
-    color:#667085;
-    margin-bottom:25px;
-    line-height:1.5;
-}
-
-.form-group{
-    margin-bottom:18px;
-}
-
-label{
-    display:block;
-    font-weight:600;
-    font-size:14px;
-    margin-bottom:7px;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-    padding:13px 14px;
-    border:1px solid #d0d5dd;
-    border-radius:10px;
-    outline:none;
-    font-size:15px;
-    background:white;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#2563eb;
-}
-
-.primary-btn{
-    width:100%;
-    border:none;
-    background:#2563eb;
-    color:white;
-    padding:14px;
-    border-radius:10px;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    margin-top:5px;
-}
-
-.primary-btn:hover{
-    background:#1d4ed8;
-}
-
-.secondary-btn{
-    border:1px solid #2563eb;
-    background:white;
-    color:#2563eb;
-    padding:12px 18px;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.demo-btn{
-    width:100%;
-    border:1px solid #d0d5dd;
-    background:white;
-    padding:13px;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-    margin-top:12px;
-}
-
-.status{
-    margin-top:12px;
-    font-size:14px;
-    line-height:1.5;
-}
-
-.success-text{
-    color:#15803d;
-}
-
-.error-text{
-    color:#dc2626;
-}
-
-.info-text{
-    color:#2563eb;
-}
-
-.hero{
-    padding:70px 0;
-}
-
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.3fr .7fr;
-    gap:35px;
-    align-items:center;
-}
-
-.badge{
-    display:inline-block;
-    padding:8px 12px;
-    background:#dbeafe;
-    color:#1d4ed8;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:18px;
-}
-
-.hero p{
-    color:#667085;
-    font-size:17px;
-    line-height:1.7;
-    margin-bottom:25px;
-}
-
-.hero-card{
-    padding:30px;
-}
-
-.stat{
-    padding:18px;
-    border-bottom:1px solid #eee;
-}
-
-.stat:last-child{
-    border-bottom:none;
-}
-
-.stat strong{
-    display:block;
-    font-size:24px;
-    color:#2563eb;
-}
-
-.stat span{
-    color:#667085;
-    font-size:14px;
-}
-
-.section{
-    padding:40px 0 70px;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.mode-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.mode-card{
-    padding:25px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.mode-card:hover{
-    transform:translateY(-4px);
-    border-color:#2563eb;
-}
-
-.mode-icon{
-    font-size:36px;
-    margin-bottom:15px;
-}
-
-.mode-card p{
-    color:#667085;
-    line-height:1.5;
-    font-size:14px;
-}
-
-.wizard{
-    padding:45px 0;
-}
-
-.wizard-card{
-    max-width:850px;
-    margin:auto;
-    padding:35px;
-}
-
-.steps{
-    display:flex;
-    gap:8px;
-    margin-bottom:30px;
-}
-
-.step{
-    flex:1;
-    height:7px;
-    background:#e5e7eb;
-    border-radius:20px;
-}
-
-.step.active{
-    background:#2563eb;
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-.tech-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-}
-
-.tech{
-    border:1px solid #d0d5dd;
-    padding:12px;
-    border-radius:10px;
-    cursor:pointer;
-    text-align:center;
-    font-size:14px;
-}
-
-.tech.selected{
-    background:#dbeafe;
-    border-color:#2563eb;
-    color:#1d4ed8;
-    font-weight:700;
-}
-
-.wizard-buttons{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin-top:25px;
-}
-
-.wizard-buttons button{
-    width:auto;
-    padding-left:25px;
-    padding-right:25px;
-}
-
-.analysis{
-    min-height:calc(100vh - 70px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.analysis-box{
-    max-width:600px;
-}
-
-.loader{
-    width:60px;
-    height:60px;
-    border:6px solid #e5e7eb;
-    border-top-color:#2563eb;
-    border-radius:50%;
-    margin:0 auto 25px;
-    animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-.results{
-    padding:45px 0;
-}
-
-.profile-summary{
-    padding:25px;
-    margin-bottom:25px;
-}
-
-.profile-stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-top:20px;
-}
-
-.profile-stat{
-    background:#f8fafc;
-    padding:18px;
-    border-radius:12px;
-    text-align:center;
-}
-
-.profile-stat strong{
-    display:block;
-    font-size:25px;
-    color:#2563eb;
-}
-
-.profile-stat span{
-    color:#667085;
-    font-size:13px;
-}
-
-.job-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-}
-
-.job-card{
-    padding:25px;
-}
-
-.job-top{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:12px;
-}
-
-.match{
-    background:#dcfce7;
-    color:#15803d;
-    padding:7px 10px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:700;
-    white-space:nowrap;
-}
-
-.company{
-    color:#667085;
-    margin-bottom:10px;
-}
-
-.job-meta{
-    color:#667085;
-    font-size:14px;
-    margin-bottom:15px;
-}
-
-.skills{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin-bottom:18px;
-}
-
-.skill{
-    background:#eef2ff;
-    color:#3730a3;
-    padding:6px 9px;
-    border-radius:7px;
-    font-size:12px;
-}
-
-.job-card button{
-    width:100%;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.5);
-    z-index:200;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.active{
-    display:flex;
-}
-
-.modal-box{
-    background:white;
-    max-width:600px;
-    width:100%;
-    border-radius:18px;
-    padding:30px;
-}
-
-.close{
-    float:right;
-    font-size:25px;
-    cursor:pointer;
-}
-
-.success-box{
-    text-align:center;
-    max-width:650px;
-    margin:80px auto;
-    padding:45px;
-}
-
-.success-icon{
-    font-size:65px;
-    margin-bottom:20px;
-}
-
-.report{
-    padding:45px 0;
-}
-
-.report-card{
-    padding:30px;
-    margin-bottom:20px;
-}
-
-.report-list{
-    padding-left:20px;
-    line-height:2;
-}
-
-.footer{
-    padding:25px;
-    text-align:center;
-    color:#667085;
-    font-size:13px;
-}
-
-@media(max-width:800px){
-
-    .hero-grid,
-    .mode-grid,
-    .job-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .profile-stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .tech-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-}
-
-@media(max-width:500px){
-
-    .navbar{
-        padding:0 4%;
-    }
-
-    .login-card,
-    .wizard-card{
-        padding:22px;
-    }
-
-    h1{
-        font-size:30px;
-    }
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitDrop | Personalized Fashion Drops</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-
-<body>
-
-<nav class="navbar">
-
-<div class="logo">
-CareerConnect AI
-</div>
-
-<div class="nav-user" id="navUser">
-Not logged in
-</div>
-
-</nav>
-
-
-<!-- LOGIN -->
-
-<section id="loginPage" class="page active">
-
-<div class="login-container">
-
-<div class="card login-card">
-
-<h2>Welcome to CareerConnect AI</h2>
-
-<p class="subtitle">
-Verify your Gmail to continue
-</p>
-
-<div class="form-group">
-
-<label>Gmail Address</label>
-
-<input
-id="loginEmail"
-type="email"
-placeholder="yourname@gmail.com">
-
-</div>
-
-<button
-class="primary-btn"
-onclick="sendOTP()">
-
-SEND OTP
-
-</button>
-
-
-<div
-id="otpSection"
-style="display:none;margin-top:20px;">
-
-<div class="form-group">
-
-<label>Enter OTP</label>
-
-<input
-id="loginOTP"
-type="text"
-maxlength="6"
-inputmode="numeric"
-placeholder="Enter 6-digit OTP">
-
-</div>
-
-<button
-class="primary-btn"
-onclick="verifyOTP()">
-
-VERIFY OTP
-
-</button>
-
-<p
-id="otpStatus"
-class="status">
-</p>
-
-</div>
-
-
-<div
-id="passwordSection"
-style="display:none;margin-top:20px;">
-
-<div class="form-group">
-
-<label>Password</label>
-
-<input
-id="loginPassword"
-type="password"
-placeholder="Minimum 8 characters">
-
-</div>
-
-<button
-class="primary-btn"
-onclick="login()">
-
-LOGIN
-
-</button>
-
-</div>
-
-
-<button
-class="demo-btn"
-onclick="demoLogin()">
-
-Try Demo Login
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- HOME -->
-
-<section id="homePage" class="page">
-
-<div class="container">
-
-<div class="hero">
-
-<div class="hero-grid">
-
-<div>
-
-<span class="badge">
-AI-Powered Career Platform
-</span>
-
-<h1>
-Build Your Career With AI
-</h1>
-
-<p>
-CareerConnect AI helps students, freshers and professionals
-find suitable jobs based on their education, skills,
-experience and career goals.
-</p>
-
-<button
-class="primary-btn"
-style="width:auto;padding:14px 25px"
-onclick="showCareerModes()">
-
-START CAREER JOURNEY
-
-</button>
-
-</div>
-
-<div class="card hero-card">
-
-<div class="stat">
-
-<strong>AI</strong>
-
-<span>Career Analysis</span>
-
-</div>
-
-<div class="stat">
-
-<strong>94%</strong>
-
-<span>Average Job Match</span>
-
-</div>
-
-<div class="stat">
-
-<strong>100+</strong>
-
-<span>Career Opportunities</span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div
-id="careerModes"
-class="section"
-style="display:none">
-
-<div class="section-title">
-
-<h2>
-Choose Your Career Path
-</h2>
-
-<p class="subtitle">
-Tell us where you are in your career journey.
-</p>
-
-</div>
-
-<div class="mode-grid">
-
-<div
-class="card mode-card"
-onclick="selectCareerMode('Student / Fresher')">
-
-<div class="mode-icon">🎓</div>
-
-<h3>Student / Fresher</h3>
-
-<p>
-Find internships and entry-level jobs based on your
-degree, branch and technical skills.
-</p>
-
-</div>
-
-
-<div
-class="card mode-card"
-onclick="selectCareerMode('Working Professional')">
-
-<div class="mode-icon">💼</div>
-
-<h3>Working Professional</h3>
-
-<p>
-Discover better opportunities and improve your current
-career path.
-</p>
-
-</div>
-
-
-<div
-class="card mode-card"
-onclick="selectCareerMode('Career Change')">
-
-<div class="mode-icon">🔄</div>
-
-<h3>Career Change</h3>
-
-<p>
-Explore a new career direction using your existing skills.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- WIZARD -->
-
-<section id="wizardPage" class="page">
-
-<div class="container wizard">
-
-<div class="card wizard-card">
-
-<div class="steps">
-
-<div class="step active" id="stepIndicator1"></div>
-
-<div class="step" id="stepIndicator2"></div>
-
-<div class="step" id="stepIndicator3"></div>
-
-</div>
-
-
-<!-- STEP 1 -->
-
-<div id="wizardStep1">
-
-<h2>
-Career Profile
-</h2>
-
-<p class="subtitle">
-Start by adding your resume and preferred job type.
-</p>
-
-<div class="form-group">
-
-<label>Upload Resume</label>
-
-<input
-type="file"
-id="resume"
-accept=".pdf,.doc,.docx">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Preferred Job Type</label>
-
-<select id="jobType">
-
-<option value="">
-Select job type
-</option>
-
-<option>
-Full-time
-</option>
-
-<option>
-Part-time
-</option>
-
-<option>
-Internship
-</option>
-
-<option>
-Any
-</option>
-
-</select>
-
-</div>
-
-
-<h3 style="margin-top:25px">
-Technologies / Skills
-</h3>
-
-<p class="subtitle">
-Select the technologies you know.
-</p>
-
-<div class="tech-grid">
-
-<div class="tech" onclick="toggleTech(this,'Python')">
-Python
-</div>
-
-<div class="tech" onclick="toggleTech(this,'Java')">
-Java
-</div>
-
-<div class="tech" onclick="toggleTech(this,'C++')">
-C++
-</div>
-
-<div class="tech" onclick="toggleTech(this,'Web Development')">
-Web Development
-</div>
-
-<div class="tech" onclick="toggleTech(this,'AI/ML')">
-AI / ML
-</div>
-
-<div class="tech" onclick="toggleTech(this,'Not Sure')">
-Not Sure
-</div>
-
-</div>
-
-
-<div class="wizard-buttons">
-
-<div></div>
-
-<button
-class="primary-btn"
-onclick="nextStep(2)">
-
-NEXT
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- STEP 2 -->
-
-<div
-id="wizardStep2"
-style="display:none">
-
-<h2>
-Education
-</h2>
-
-<p class="subtitle">
-Tell us about your academic background.
-</p>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Degree</label>
-
-<select
-id="degree"
-onchange="updateBranches()">
-
-<option value="">
-Select degree
-</option>
-
-<option>B.Tech</option>
-<option>B.E</option>
-<option>B.Sc</option>
-<option>M.Tech</option>
-<option>M.Sc</option>
-<option>MBA</option>
-<option>Other</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Branch / Specialization</label>
-
-<select id="branch">
-
-<option>
-Select degree first
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>College</label>
-
-<input
-id="college"
-placeholder="Your college name">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Joining Year</label>
-
-<select id="joiningYear">
-
-<option value="">
-Select year
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Graduation Year</label>
-
-<select id="graduation">
-
-<option value="">
-Select year
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="wizard-buttons">
-
-<button
-class="secondary-btn"
-onclick="nextStep(1)">
-
-BACK
-
-</button>
-
-<button
-class="primary-btn"
-onclick="nextStep(3)">
-
-NEXT
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- STEP 3 -->
-
-<div
-id="wizardStep3"
-style="display:none">
-
-<h2>
-Personal Details
-</h2>
-
-<p class="subtitle">
-These details help us personalize your career matches.
-</p>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Name</label>
-
-<input
-id="candidateName"
-placeholder="Your full name">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Phone</label>
-
-<input
-id="phone"
-placeholder="Your phone number">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Email</label>
-
-<input
-id="candidateEmail"
-type="email"
-readonly>
-
-</div>
-
-
-<div class="form-group">
-
-<label>Preferred Location</label>
-
-<input
-id="location"
-placeholder="e.g. Hyderabad">
-
-</div>
-
-
-<div class="form-group">
-
-<label>LinkedIn</label>
-
-<input
-id="linkedin"
-placeholder="LinkedIn profile URL">
-
-</div>
-
-
-<div class="form-group">
-
-<label>GitHub</label>
-
-<input
-id="github"
-placeholder="GitHub profile URL">
-
-</div>
-
-</div>
-
-
-<div class="wizard-buttons">
-
-<button
-class="secondary-btn"
-onclick="nextStep(2)">
-
-BACK
-
-</button>
-
-<button
-class="primary-btn"
-onclick="analyzeProfile()">
-
-ANALYZE MY CAREER
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ANALYSIS -->
-
-<section id="analysisPage" class="page">
-
-<div class="analysis">
-
-<div class="analysis-box">
-
-<div class="loader"></div>
-
-<h2>
-AI is analyzing your career profile...
-</h2>
-
-<p
-id="analysisText"
-class="subtitle">
-
-Matching your skills with suitable opportunities.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- RESULTS -->
-
-<section id="resultsPage" class="page">
-
-<div class="container results">
-
-<div class="card profile-summary">
-
-<h2>
-Your AI Career Analysis
-</h2>
-
-<p
-id="profileMessage"
-class="subtitle">
-</p>
-
-<div class="profile-stats">
-
-<div class="profile-stat">
-
-<strong id="skillCount">
-0
-</strong>
-
-<span>Skills</span>
-
-</div>
-
-
-<div class="profile-stat">
-
-<strong id="matchScore">
-0%
-</strong>
-
-<span>Top Match</span>
-
-</div>
-
-
-<div class="profile-stat">
-
-<strong id="jobCount">
-0
-</strong>
-
-<span>Jobs Found</span>
-
-</div>
-
-
-<div class="profile-stat">
-
-<strong id="careerModeResult">
--
-</strong>
-
-<span>Career Path</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div style="margin-bottom:20px">
-
-<h2>
-Recommended Jobs
-</h2>
-
-<p class="subtitle">
-Jobs matched to your profile.
-</p>
-
-</div>
-
-
-<div
-id="jobGrid"
-class="job-grid">
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SUCCESS -->
-
-<section id="successPage" class="page">
-
-<div class="container">
-
-<div class="card success-box">
-
-<div class="success-icon">
-🎉
-</div>
-
-<h2>
-Application Ready!
-</h2>
-
-<p
-id="successText"
-class="subtitle">
-</p>
-
-<button
-class="primary-btn"
-style="width:auto;padding:14px 25px"
-onclick="showCareerReport()">
-
-VIEW CAREER REPORT
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- REPORT -->
-
-<section id="reportPage" class="page">
-
-<div class="container report">
-
-<div class="section-title">
-
-<h2>
-Your Career Report
-</h2>
-
-<p class="subtitle">
-AI-generated summary of your career profile.
-</p>
-
-</div>
-
-
-<div class="card report-card">
-
-<h3>
-Career Profile
-</h3>
-
-<p id="reportProfile">
-</p>
-
-</div>
-
-
-<div class="card report-card">
-
-<h3>
-Recommended Skills
-</h3>
-
-<ul
-class="report-list"
-id="recommendedSkills">
-</ul>
-
-</div>
-
-
-<div class="card report-card">
-
-<h3>
-Career Suggestions
-</h3>
-
-<ul class="report-list">
-
-<li>Continue building practical projects.</li>
-
-<li>Keep your resume updated with measurable achievements.</li>
-
-<li>Practice technical and communication interviews.</li>
-
-<li>Apply consistently to roles matching your current skill level.</li>
-
-</ul>
-
-</div>
-
-
-<div class="card report-card">
-
-<h3>
-CareerConnect AI Recommendation
-</h3>
-
-<p id="finalRecommendation">
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- JOB MODAL -->
-
-<div
-id="jobModal"
-class="modal">
-
-<div class="modal-box">
-
-<span
-class="close"
-onclick="closeJobModal()">
-
-&times;
-
-</span>
-
-<h2 id="modalTitle">
-</h2>
-
-<p
-id="modalCompany"
-class="company">
-</p>
-
-<p
-id="modalLocation"
-class="job-meta">
-</p>
-
-<p
-id="modalDescription"
-class="subtitle">
-</p>
-
-<h3>
-Required Skills
-</h3>
-
-<div
-id="modalSkills"
-class="skills"
-style="margin-top:12px">
-</div>
-
-<h3>
-Skill to Improve
-</h3>
-
-<p
-id="modalMissing"
-class="subtitle">
-</p>
-
-<button
-class="primary-btn"
-onclick="applyJob()">
-
-APPLY NOW
-
-</button>
-
-</div>
-
-</div>
-
-
-<div class="footer">
-
-CareerConnect AI © 2026 — AI-powered employment platform
-
-</div>
-
-
-<script>
-
-/* =========================================
-   EMAILJS CONFIGURATION
-========================================= */
-
-const EMAILJS_PUBLIC_KEY =
-"NVyFS_3DHpCingL7k";
-
-const EMAILJS_SERVICE_ID =
-"service_6yaayrh";
-
-const EMAILJS_TEMPLATE_ID =
-"template_9pout14";
-
-
-emailjs.init({
-    publicKey: EMAILJS_PUBLIC_KEY
-});
-
-
-/* =========================================
-   GLOBAL VARIABLES
-========================================= */
-
-let generatedOTP = "";
-
-let verifiedEmail = "";
-
-let otpTime = 0;
-
-let gmailVerified = false;
-
-let selectedTechs = [];
-
-let selectedJob = null;
-
-let currentStep = 1;
-
-
-let user = {
-
-    email:"",
-    password:"",
-    name:"",
-    phone:"",
-    college:"",
-    degree:"",
-    branch:"",
-    joiningYear:"",
-    graduation:"",
-    location:"",
-    linkedin:"",
-    github:"",
-    careerMode:"",
-    resume:"",
-    jobType:"",
-    streams:[]
-
-};
-
-
-/* =========================================
-   JOB DATA
-========================================= */
-
-const jobs = [
-
-{
-title:"Python Developer",
-company:"TechNova Solutions",
-type:"Full-time",
-stream:"Python",
-location:"Hyderabad",
-match:94,
-skills:["Python","Django","SQL","REST API"],
-missing:["Docker"],
-description:
-"Work with the development team to build Python backend applications, APIs and business solutions."
-},
-
-{
-title:"Python Intern",
-company:"CodeWorks",
-type:"Internship",
-stream:"Python",
-location:"Bangalore",
-match:91,
-skills:["Python","Git","SQL"],
-missing:["Django"],
-description:
-"Join our development team and gain practical experience building Python applications."
-},
-
-{
-title:"Backend Developer",
-company:"CloudByte",
-type:"Full-time",
-stream:"Python",
-location:"Bangalore",
-match:88,
-skills:["Python","SQL","REST API"],
-missing:["AWS"],
-description:
-"Develop backend services and APIs for scalable cloud applications."
-},
-
-{
-title:"Java Developer",
-company:"InnoTech",
-type:"Full-time",
-stream:"Java",
-location:"Hyderabad",
-match:93,
-skills:["Java","Spring Boot","SQL"],
-missing:["Docker"],
-description:
-"Build enterprise applications using Java and Spring Boot."
-},
-
-{
-title:"Java Intern",
-company:"NextGen Labs",
-type:"Internship",
-stream:"Java",
-location:"Chennai",
-match:89,
-skills:["Java","OOP","SQL"],
-missing:["Spring Boot"],
-description:
-"Learn professional Java development while working with an experienced engineering team."
-},
-
-{
-title:"Frontend Developer",
-company:"PixelSoft",
-type:"Full-time",
-stream:"Web Development",
-location:"Bangalore",
-match:95,
-skills:["HTML","CSS","JavaScript","React"],
-missing:["TypeScript"],
-description:
-"Create responsive and modern web applications for customers."
-},
-
-{
-title:"Frontend Intern",
-company:"DesignStack",
-type:"Internship",
-stream:"Web Development",
-location:"Hyderabad",
-match:92,
-skills:["HTML","CSS","JavaScript"],
-missing:["React"],
-description:
-"Work with designers and developers to create attractive web experiences."
-},
-
-{
-title:"AI/ML Intern",
-company:"AI Labs India",
-type:"Internship",
-stream:"AI/ML",
-location:"Bangalore",
-match:96,
-skills:["Python","Machine Learning","Pandas","NumPy"],
-missing:["Deep Learning"],
-description:
-"Work on machine learning projects and real-world AI solutions."
-},
-
-{
-title:"C++ Developer",
-company:"CoreTech",
-type:"Full-time",
-stream:"C++",
-location:"Pune",
-match:90,
-skills:["C++","OOP","DSA"],
-missing:["Linux"],
-description:
-"Develop high-performance software using C++ and modern development practices."
-}
-
-];
-
-
-/* =========================================
-   BRANCH DATA
-========================================= */
-
-const branches = {
-
-"B.Tech":[
-"CSE",
-"CSE AI/ML",
-"CSE Data Science",
-"AI",
-"AI & DS",
-"IT",
-"Cyber Security",
-"ECE",
-"EEE",
-"EE",
-"Electronics",
-"Mechanical",
-"Civil",
-"Chemical",
-"Biotechnology",
-"Aerospace",
-"Automobile",
-"Aeronautical",
-"Industrial",
-"Production",
-"Mechatronics",
-"Agricultural",
-"Food Technology",
-"Biomedical",
-"Environmental",
-"Mining",
-"Petroleum",
-"Other"
-],
-
-"B.E":[
-"CSE",
-"IT",
-"AI",
-"AI & DS",
-"Data Science",
-"Cyber Security",
-"ECE",
-"EEE",
-"EE",
-"Mechanical",
-"Civil",
-"Chemical",
-"Biotechnology",
-"Aerospace",
-"Automobile",
-"Aeronautical",
-"Industrial",
-"Production",
-"Mechatronics",
-"Biomedical",
-"Environmental",
-"Other"
-],
-
-"B.Sc":[
-"Computer Science",
-"Information Technology",
-"Data Science",
-"Artificial Intelligence",
-"Computer Applications",
-"Mathematics",
-"Physics",
-"Chemistry",
-"Statistics",
-"Biotechnology",
-"Microbiology",
-"Biochemistry",
-"Botany",
-"Zoology",
-"Electronics",
-"Geology",
-"Environmental Science",
-"Psychology",
-"Agriculture",
-"Food Science",
-"Nutrition",
-"Forensic Science",
-"Bioinformatics",
-"Geography",
-"Economics",
-"Other"
-],
-
-"M.Tech":[
-"CSE",
-"AI",
-"ML",
-"Data Science",
-"Software Engineering",
-"IT",
-"Cyber Security",
-"Cloud Computing",
-"AI & DS",
-"ECE",
-"VLSI Design",
-"Embedded Systems",
-"Communication Systems",
-"EE",
-"Power Systems",
-"Power Electronics",
-"Mechanical",
-"Thermal",
-"Machine Design",
-"Civil",
-"Structural",
-"Environmental",
-"Other"
-],
-
-"M.Sc":[
-"CS",
-"IT",
-"Data Science",
-"AI",
-"Math",
-"Physics",
-"Chemistry",
-"Statistics",
-"Biotechnology",
-"Microbiology",
-"Biochemistry",
-"Botany",
-"Zoology",
-"Electronics",
-"Bioinformatics",
-"Environmental Science",
-"Forensic Science",
-"Geology",
-"Psychology",
-"Other"
-],
-
-"MBA":[
-"Finance",
-"Marketing",
-"HR",
-"Business Analytics",
-"IT",
-"Operations",
-"International Business",
-"Healthcare Management",
-"Entrepreneurship",
-"Supply Chain",
-"Digital Marketing",
-"Banking and Finance",
-"Business Management",
-"Retail Management",
-"Project Management",
-"Other"
-],
-
-"Other":[
-"General",
-"CS",
-"IT",
-"Management",
-"Science",
-"Engineering",
-"Arts",
-"Commerce",
-"Education",
-"Other"
-]
-
-};
-
-
-/* =========================================
-   LOGIN
-========================================= */
-
-function sendOTP(){
-
-    const email =
-        document.getElementById("loginEmail")
-        .value
-        .trim();
-
-    const otpSection =
-        document.getElementById("otpSection");
-
-    const status =
-        document.getElementById("otpStatus");
-
-
-    if(
-        !/^[a-zA-Z0-9._%+-]+@gmail\.com$/i
-        .test(email)
-    ){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Enter a valid Gmail address.";
-
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <div class="flex items-center space-x-2">
+        <span class="bg-indigo-600 text-white p-2 rounded-xl text-lg font-black tracking-wider">FD</span>
+        <span class="text-2xl font-black tracking-tight text-gray-900">Fit<span class="text-indigo-600">Drop</span></span>
+      </div>
+
+      <!-- Top-Right Actions Area -->
+      <div class="flex items-center space-x-3">
+        <!-- Guest State (Log In / Sign Up) -->
+        <div id="nav-user-section" class="flex items-center space-x-3">
+          <button id="nav-login-btn" class="px-4 py-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700">Log In</button>
+          <button id="nav-signup-btn" class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg shadow hover:bg-indigo-700 transition">Sign Up</button>
+        </div>
+
+        <!-- Logged-in State (User Name + Sign Out) -->
+        <div id="user-pill" class="hidden items-center gap-2 bg-gray-100 border border-gray-200 pl-3 pr-1.5 py-1 rounded-full transition">
+          <div class="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">
+            <i class="ph ph-user"></i>
+          </div>
+          <span id="user-display-name" class="font-medium text-xs sm:text-sm text-gray-800">User</span>
+          <button id="logout-btn" class="ml-1 text-xs bg-white hover:bg-rose-50 hover:text-rose-600 border border-gray-200 text-gray-600 font-semibold px-2.5 py-1 rounded-full transition shadow-xs">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Welcome Banner -->
+  <section class="max-w-7xl mx-auto px-4 pt-8 pb-4 w-full">
+    <div id="user-greeting-card" class="bg-gradient-to-r from-indigo-600 to-violet-700 rounded-2xl p-6 sm:p-8 text-white shadow-lg mb-8">
+      <h1 id="greeting-text" class="text-2xl sm:text-3xl font-bold">Discover Your Next Look ✨</h1>
+      <p id="sub-greeting-text" class="text-indigo-100 mt-1">Trending picks from Myntra, Ajio & Amazon curated daily.</p>
+    </div>
+
+    <!-- Feed Filters -->
+    <div class="flex items-center justify-between flex-wrap gap-4 border-b border-gray-200 pb-4">
+      <div class="flex items-center gap-2">
+        <button class="filter-chip active bg-indigo-600 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm" data-filter="all">All Styles</button>
+        <button class="filter-chip bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 text-xs font-semibold px-4 py-2 rounded-full transition" data-filter="Men">Men</button>
+        <button class="filter-chip bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 text-xs font-semibold px-4 py-2 rounded-full transition" data-filter="Women">Women</button>
+        <button class="filter-chip bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 text-xs font-semibold px-4 py-2 rounded-full transition" data-filter="Streetwear">Streetwear</button>
+      </div>
+      <span class="text-xs text-gray-400 font-medium tracking-wide uppercase">Verified Affiliate Drops</span>
+    </div>
+  </section>
+
+  <!-- Main Drops Feed -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+    <div id="outfit-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Cards dynamically rendered via JS -->
+    </div>
+  </main>
+
+  <!-- Auth Modal (Sign In / Sign Up) -->
+  <div id="auth-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+      <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+        <i class="ph ph-x text-2xl"></i>
+      </button>
+
+      <h2 id="auth-modal-title" class="text-2xl font-bold text-gray-900 mb-2">Welcome to FitDrop</h2>
+      <p class="text-sm text-gray-500 mb-6">Create an account or sign in to personalize your recommendations.</p>
+
+      <!-- Google Sign In -->
+      <button id="google-login-btn" class="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-xl py-2.5 px-4 font-semibold text-gray-700 hover:bg-gray-50 transition shadow-sm mb-4">
+        <svg class="w-5 h-5" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="flex items-center my-4">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="px-3 text-xs text-gray-400 font-semibold uppercase">Or with Email</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+
+      <!-- Email Form -->
+      <form id="email-auth-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Email Address</label>
+          <input type="email" id="auth-email" required class="w-full px-3.5 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="name@domain.com">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Password</label>
+          <input type="password" id="auth-password" required class="w-full px-3.5 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="••••••••">
+        </div>
+        <p id="auth-error" class="text-xs text-rose-600 hidden"></p>
+        <button type="submit" id="auth-submit-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow transition text-sm">
+          Sign In
+        </button>
+      </form>
+
+      <div class="mt-4 text-center">
+        <button id="toggle-auth-mode" class="text-xs text-indigo-600 hover:underline font-semibold">
+          Don't have an account? Sign up
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Onboarding Modal (Name, Age, Gender) -->
+  <div id="onboarding-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-md p-6 sm:p-8 shadow-2xl">
+      <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 text-2xl">
+        <i class="ph ph-sparkle"></i>
+      </div>
+      <h2 class="text-2xl font-black text-gray-900 mb-1">Personalize Your Fit</h2>
+      <p class="text-sm text-gray-500 mb-6">Tell us a bit about you so FitDrop can prioritize outfits tailored to your style.</p>
+
+      <form id="onboarding-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Full Name</label>
+          <input type="text" id="ob-name" required class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="Charan">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Age</label>
+          <input type="number" id="ob-age" min="12" max="100" required class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="21">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Preferred Fashion Category</label>
+          <select id="ob-gender" required class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm bg-white">
+            <option value="Men">Men's Fashion</option>
+            <option value="Women">Women's Fashion</option>
+            <option value="All">Unisex / All Styles</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg transition text-sm mt-4">
+          Save & See My Recommendations
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts & Main Business Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getAuth, 
+      signInWithPopup, 
+      GoogleAuthProvider, 
+      createUserWithEmailAndPassword, 
+      signInWithEmailAndPassword, 
+      onAuthStateChanged, 
+      signOut 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { 
+      getFirestore, 
+      doc, 
+      setDoc, 
+      getDoc 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Project Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBV156lp7Scg6RCNXR7Lf8QweNaDW0jrq8",
+      authDomain: "fitdrop-6fe73.firebaseapp.com",
+      projectId: "fitdrop-6fe73",
+      storageBucket: "fitdrop-6fe73.firebasestorage.app",
+      messagingSenderId: "185102607457",
+      appId: "1:185102607457:web:8396fcb87d24512c8ef620"
+    };
+
+    // Initialize Services
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const googleProvider = new GoogleAuthProvider();
+
+    // Curated Drops with Affiliate Retailers
+    const DROPS = [
+      {
+        id: 1,
+        title: "Oversized Vintage Acid Wash Tee",
+        platform: "Ajio",
+        category: "Men",
+        tag: "Streetwear",
+        price: "₹899",
+        originalPrice: "₹1,999",
+        affiliateUrl: "https://www.ajio.com",
+        imageUrl: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 2,
+        title: "Relaxed Fit Utility Cargo Trousers",
+        platform: "Myntra",
+        category: "Men",
+        tag: "Streetwear",
+        price: "₹1,499",
+        originalPrice: "₹2,799",
+        affiliateUrl: "https://www.myntra.com",
+        imageUrl: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 3,
+        title: "Cropped Linen Blend Summer Shirt",
+        platform: "Myntra",
+        category: "Women",
+        tag: "Casual",
+        price: "₹1,199",
+        originalPrice: "₹2,299",
+        affiliateUrl: "https://www.myntra.com",
+        imageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 4,
+        title: "Retro Monochrome Chunky Sneakers",
+        platform: "Amazon",
+        category: "Men",
+        tag: "Streetwear",
+        price: "₹2,199",
+        originalPrice: "₹4,999",
+        affiliateUrl: "https://www.amazon.in",
+        imageUrl: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 5,
+        title: "Structured Minimalist Blazer",
+        platform: "Ajio",
+        category: "Women",
+        tag: "Formal",
+        price: "₹2,499",
+        originalPrice: "₹4,499",
+        affiliateUrl: "https://www.ajio.com",
+        imageUrl: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 6,
+        title: "Heavyweight Boxy Graphic Hoodie",
+        platform: "Amazon",
+        category: "Men",
+        tag: "Streetwear",
+        price: "₹1,799",
+        originalPrice: "₹3,199",
+        affiliateUrl: "https://www.amazon.in",
+        imageUrl: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80"
+      }
+    ];
+
+    // State
+    let currentUser = null;
+    let currentUserProfile = null;
+    let isSignUpMode = false;
+    let activeFilter = 'all';
+
+    // DOM Elements
+    const outfitGrid = document.getElementById('outfit-grid');
+    const authModal = document.getElementById('auth-modal');
+    const onboardingModal = document.getElementById('onboarding-modal');
+    const navUserSection = document.getElementById('nav-user-section');
+    const userPill = document.getElementById('user-pill');
+    const userDisplayName = document.getElementById('user-display-name');
+    const greetingText = document.getElementById('greeting-text');
+    const emailAuthForm = document.getElementById('email-auth-form');
+    const authError = document.getElementById('auth-error');
+    const authModalTitle = document.getElementById('auth-modal-title');
+    const authSubmitBtn = document.getElementById('auth-submit-btn');
+    const toggleAuthModeBtn = document.getElementById('toggle-auth-mode');
+
+    // Render Cards Function
+    function renderDrops(filterCategory = 'all') {
+      outfitGrid.innerHTML = '';
+      const itemsToDisplay = DROPS.filter(item => {
+        if (filterCategory === 'all') return true;
+        return item.category === filterCategory || item.tag === filterCategory;
+      });
+
+      if (itemsToDisplay.length === 0) {
+        outfitGrid.innerHTML = `<div class="col-span-full py-12 text-center text-gray-500">No outfits found in this category.</div>`;
         return;
+      }
+
+      itemsToDisplay.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col group";
+        card.innerHTML = `
+          <div class="relative h-64 overflow-hidden bg-gray-100">
+            <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">${item.platform}</span>
+            <span class="absolute top-3 right-3 bg-white/90 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-md">${item.tag}</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-gray-900 text-sm line-clamp-1 group-hover:text-indigo-600 transition">${item.title}</h3>
+              <div class="mt-2 flex items-baseline gap-2">
+                <span class="text-base font-extrabold text-gray-900">${item.price}</span>
+                <span class="text-xs text-gray-400 line-through">${item.originalPrice}</span>
+              </div>
+            </div>
+            <a href="${item.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="mt-4 w-full bg-gray-900 group-hover:bg-indigo-600 text-white text-xs font-bold py-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Buy on ${item.platform}</span>
+              <i class="ph ph-arrow-square-out text-sm"></i>
+            </a>
+          </div>
+        `;
+        outfitGrid.appendChild(card);
+      });
     }
 
-
-    generatedOTP =
-        Math.floor(
-            100000 +
-            Math.random() * 900000
-        ).toString();
-
-
-    verifiedEmail = email;
-
-    otpTime = Date.now();
-
-    gmailVerified = false;
-
-
-    /*
-       IMPORTANT:
-       OTP section appears immediately.
-       There is NO artificial delay.
-    */
-
-    otpSection.style.display =
-        "block";
-
-
-    status.className =
-        "status info-text";
-
-    status.innerText =
-        "⏳ Sending OTP to your Gmail...";
-
-
-    document.getElementById(
-        "loginOTP"
-    ).value = "";
-
-
-    document.getElementById(
-        "loginOTP"
-    ).focus();
-
-
-    emailjs.send(
-
-        EMAILJS_SERVICE_ID,
-
-        EMAILJS_TEMPLATE_ID,
-
-        {
-
-            to_email:email,
-
-            candidate_name:
-                "CareerConnect User",
-
-            otp:generatedOTP
-
-        }
-
-    )
-    .then(function(){
-
-        status.className =
-            "status success-text";
-
-        status.innerText =
-            "✅ OTP sent! Check your Gmail.";
-
-    })
-
-    .catch(function(error){
-
-        console.error(
-            "EmailJS Error:",
-            error
-        );
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Email failed. Reconnect Gmail in EmailJS.";
-
+    // Filter Chips Event Listeners
+    document.querySelectorAll('.filter-chip').forEach(button => {
+      button.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-chip').forEach(b => {
+          b.className = "filter-chip bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 text-xs font-semibold px-4 py-2 rounded-full transition";
+        });
+        e.target.className = "filter-chip active bg-indigo-600 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm";
+        activeFilter = e.target.getAttribute('data-filter');
+        renderDrops(activeFilter);
+      });
     });
 
-}
-
-
-/* =========================================
-   VERIFY OTP
-========================================= */
-
-function verifyOTP(){
-
-    const email =
-        document.getElementById(
-            "loginEmail"
-        ).value.trim();
-
-
-    const enteredOTP =
-        document.getElementById(
-            "loginOTP"
-        ).value.trim();
-
-
-    const status =
-        document.getElementById(
-            "otpStatus"
-        );
-
-
-    if(email !== verifiedEmail){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Email changed. Send OTP again.";
-
-        return;
-
+    // Modal Control Helpers
+    function openAuthModal(signup = false) {
+      isSignUpMode = signup;
+      authModalTitle.innerText = isSignUpMode ? "Join FitDrop" : "Welcome Back";
+      authSubmitBtn.innerText = isSignUpMode ? "Create Account" : "Sign In";
+      toggleAuthModeBtn.innerText = isSignUpMode ? "Already have an account? Log in" : "Don't have an account? Sign up";
+      authError.classList.add('hidden');
+      authModal.classList.remove('hidden');
     }
 
+    document.getElementById('nav-login-btn').addEventListener('click', () => openAuthModal(false));
+    document.getElementById('nav-signup-btn').addEventListener('click', () => openAuthModal(true));
+    document.getElementById('close-auth-modal').addEventListener('click', () => authModal.classList.add('hidden'));
 
-    if(enteredOTP.length !== 6){
+    toggleAuthModeBtn.addEventListener('click', () => {
+      openAuthModal(!isSignUpMode);
+    });
 
-        status.className =
-            "status error-text";
+    // Check & Handle User Profile in Cloud Firestore
+    async function checkUserProfile(user) {
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userDocRef);
 
-        status.innerText =
-            "❌ Enter the 6-digit OTP.";
-
-        return;
-
+        if (docSnap.exists()) {
+          currentUserProfile = docSnap.data();
+          greetingText.innerText = `Welcome Back, ${currentUserProfile.name}! 👋`;
+          userDisplayName.innerText = currentUserProfile.name;
+          
+          if (currentUserProfile.gender && currentUserProfile.gender !== 'All') {
+            activeFilter = currentUserProfile.gender;
+            
+            // Sync filter buttons UI
+            document.querySelectorAll('.filter-chip').forEach(b => {
+              if (b.getAttribute('data-filter') === activeFilter) {
+                b.className = "filter-chip active bg-indigo-600 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm";
+              } else {
+                b.className = "filter-chip bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 text-xs font-semibold px-4 py-2 rounded-full transition";
+              }
+            });
+            
+            renderDrops(activeFilter);
+          }
+        } else {
+          document.getElementById('ob-name').value = user.displayName || '';
+          onboardingModal.classList.remove('hidden');
+        }
+      } catch (err) {
+        console.error("Firestore retrieval error:", err);
+      }
     }
 
-
-    if(
-        Date.now() - otpTime >
-        300000
-    ){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ OTP expired. Send a new OTP.";
-
-        return;
-
-    }
-
-
-    if(
-        enteredOTP !== generatedOTP
-    ){
-
-        status.className =
-            "status error-text";
-
-        status.innerText =
-            "❌ Wrong OTP. Try again.";
-
-        return;
-
-    }
-
-
-    gmailVerified = true;
-
-
-    status.className =
-        "status success-text";
-
-    status.innerText =
-        "✅ Gmail VERIFIED successfully!";
-
-
-    document.getElementById(
-        "passwordSection"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "loginPassword"
-    ).focus();
-
-}
-
-
-/* =========================================
-   LOGIN
-========================================= */
-
-function login(){
-
-    if(!gmailVerified){
-
-        alert(
-            "Please verify your Gmail first."
-        );
-
-        return;
-
-    }
-
-
-    const password =
-        document.getElementById(
-            "loginPassword"
-        ).value;
-
-
-    if(password.length < 8){
-
-        alert(
-            "Password must contain at least 8 characters."
-        );
-
-        return;
-
-    }
-
-
-    user.email =
-        document.getElementById(
-            "loginEmail"
-        ).value.trim();
-
-
-    user.password =
-        password;
-
-
-    document.getElementById(
-        "navUser"
-    ).innerText =
-        user.email;
-
-
-    document.getElementById(
-        "candidateEmail"
-    ).value =
-        user.email;
-
-
-    showPage("homePage");
-
-}
-
-
-/* =========================================
-   DEMO LOGIN
-========================================= */
-
-function demoLogin(){
-
-    gmailVerified = true;
-
-    user.email =
-        "demo@gmail.com";
-
-
-    document.getElementById(
-        "navUser"
-    ).innerText =
-        "demo@gmail.com";
-
-
-    document.getElementById(
-        "candidateEmail"
-    ).value =
-        "demo@gmail.com";
-
-
-    showPage("homePage");
-
-}
-
-
-/* =========================================
-   PAGE NAVIGATION
-========================================= */
-
-function showPage(pageId){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(function(page){
-
-            page.classList.remove("active");
-
+    // Onboarding Form Submit
+    document.getElementById('onboarding-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!currentUser) return;
+
+      const name = document.getElementById('ob-name').value.trim();
+      const age = document.getElementById('ob-age').value.trim();
+      const gender = document.getElementById('ob-gender').value;
+
+      try {
+        await setDoc(doc(db, "users", currentUser.uid), {
+          name: name,
+          age: parseInt(age),
+          gender: gender,
+          email: currentUser.email,
+          createdAt: new Date().toISOString()
         });
 
+        onboardingModal.classList.add('hidden');
+        currentUserProfile = { name, age, gender };
+        greetingText.innerText = `Welcome to FitDrop, ${name}! ✨`;
+        userDisplayName.innerText = name;
 
-    document
-        .getElementById(pageId)
-        .classList.add("active");
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"instant"
+        if (gender !== 'All') {
+          renderDrops(gender);
+        }
+      } catch (err) {
+        console.error("Error saving onboarding details:", err);
+        alert("Failed to save profile: " + err.message);
+      }
     });
 
-}
-
-
-/* =========================================
-   CAREER MODE
-========================================= */
-
-function showCareerModes(){
-
-    document.getElementById(
-        "careerModes"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "careerModes"
-    ).scrollIntoView({
-        behavior:"smooth"
+    // Google Sign In
+    document.getElementById('google-login-btn').addEventListener('click', async () => {
+      try {
+        authError.classList.add('hidden');
+        const res = await signInWithPopup(auth, googleProvider);
+        authModal.classList.add('hidden');
+        await checkUserProfile(res.user);
+      } catch (err) {
+        authError.innerText = err.message;
+        authError.classList.remove('hidden');
+      }
     });
 
-}
+    // Email / Password Form Submit
+    emailAuthForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('auth-email').value;
+      const pass = document.getElementById('auth-password').value;
 
-
-function selectCareerMode(mode){
-
-    user.careerMode =
-        mode;
-
-
-    showPage("wizardPage");
-
-    currentStep = 1;
-
-    updateWizard();
-
-}
-
-
-/* =========================================
-   TECHNOLOGIES
-========================================= */
-
-function toggleTech(element,tech){
-
-    element.classList.toggle(
-        "selected"
-    );
-
-
-    if(
-        selectedTechs.includes(tech)
-    ){
-
-        selectedTechs =
-            selectedTechs.filter(
-                function(item){
-                    return item !== tech;
-                }
-            );
-
-    }else{
-
-        selectedTechs.push(tech);
-
-    }
-
-}
-
-
-/* =========================================
-   WIZARD
-========================================= */
-
-function nextStep(step){
-
-    currentStep = step;
-
-    updateWizard();
-
-}
-
-
-function updateWizard(){
-
-    document.getElementById(
-        "wizardStep1"
-    ).style.display =
-        currentStep === 1
-        ? "block"
-        : "none";
-
-
-    document.getElementById(
-        "wizardStep2"
-    ).style.display =
-        currentStep === 2
-        ? "block"
-        : "none";
-
-
-    document.getElementById(
-        "wizardStep3"
-    ).style.display =
-        currentStep === 3
-        ? "block"
-        : "none";
-
-
-    for(let i=1;i<=3;i++){
-
-        document.getElementById(
-            "stepIndicator"+i
-        ).classList.toggle(
-            "active",
-            i <= currentStep
-        );
-
-    }
-
-}
-
-
-/* =========================================
-   BRANCH DROPDOWN
-========================================= */
-
-function updateBranches(){
-
-    const degree =
-        document.getElementById(
-            "degree"
-        ).value;
-
-
-    const branch =
-        document.getElementById(
-            "branch"
-        );
-
-
-    branch.innerHTML = "";
-
-
-    if(!branches[degree]){
-
-        const option =
-            document.createElement(
-                "option"
-            );
-
-        option.textContent =
-            "Select degree first";
-
-        branch.appendChild(option);
-
-        return;
-
-    }
-
-
-    branches[degree].forEach(
-        function(item){
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value = item;
-
-            option.textContent = item;
-
-            branch.appendChild(
-                option
-            );
-
+      try {
+        authError.classList.add('hidden');
+        let res;
+        if (isSignUpMode) {
+          res = await createUserWithEmailAndPassword(auth, email, pass);
+        } else {
+          res = await signInWithEmailAndPassword(auth, email, pass);
         }
-    );
-
-}
-
-
-/* =========================================
-   YEAR DROPDOWNS
-========================================= */
-
-function loadYears(){
-
-    const joining =
-        document.getElementById(
-            "joiningYear"
-        );
-
-
-    const graduation =
-        document.getElementById(
-            "graduation"
-        );
-
-
-    for(
-        let year=2015;
-        year<=2035;
-        year++
-    ){
-
-        const option1 =
-            document.createElement(
-                "option"
-            );
-
-        option1.value =
-            year;
-
-        option1.textContent =
-            year;
-
-        joining.appendChild(
-            option1
-        );
-
-
-        const option2 =
-            document.createElement(
-                "option"
-            );
-
-        option2.value =
-            year;
-
-        option2.textContent =
-            year;
-
-        graduation.appendChild(
-            option2
-        );
-
-    }
-
-}
-
-
-/* =========================================
-   ANALYZE PROFILE
-========================================= */
-
-function analyzeProfile(){
-
-    user.name =
-        document.getElementById(
-            "candidateName"
-        ).value.trim();
-
-
-    user.phone =
-        document.getElementById(
-            "phone"
-        ).value.trim();
-
-
-    user.college =
-        document.getElementById(
-            "college"
-        ).value.trim();
-
-
-    user.degree =
-        document.getElementById(
-            "degree"
-        ).value;
-
-
-    user.branch =
-        document.getElementById(
-            "branch"
-        ).value;
-
-
-    user.joiningYear =
-        document.getElementById(
-            "joiningYear"
-        ).value;
-
-
-    user.graduation =
-        document.getElementById(
-            "graduation"
-        ).value;
-
-
-    user.location =
-        document.getElementById(
-            "location"
-        ).value.trim();
-
-
-    user.linkedin =
-        document.getElementById(
-            "linkedin"
-        ).value.trim();
-
-
-    user.github =
-        document.getElementById(
-            "github"
-        ).value.trim();
-
-
-    user.jobType =
-        document.getElementById(
-            "jobType"
-        ).value;
-
-
-    user.streams =
-        [...selectedTechs];
-
-
-    const resume =
-        document.getElementById(
-            "resume"
-        );
-
-
-    user.resume =
-        resume.files.length > 0
-        ? resume.files[0].name
-        : "Not uploaded";
-
-
-    showPage("analysisPage");
-
-
-    /*
-       The analysis is intentionally fast.
-       No long artificial delay.
-    */
-
-    setTimeout(function(){
-
-        showResults();
-
-    },700);
-
-}
-
-
-/* =========================================
-   SHOW RESULTS
-========================================= */
-
-function showResults(){
-
-    let filteredJobs =
-        jobs.slice();
-
-
-    if(
-        user.jobType &&
-        user.jobType !== "Any"
-    ){
-
-        const sameType =
-            filteredJobs.filter(
-                function(job){
-
-                    return job.type ===
-                        user.jobType;
-
-                }
-            );
-
-
-        if(sameType.length > 0){
-
-            filteredJobs =
-                sameType;
-
-        }
-
-    }
-
-
-    if(
-        user.streams.length > 0 &&
-        !user.streams.includes("Not Sure")
-    ){
-
-        const skillJobs =
-            filteredJobs.filter(
-                function(job){
-
-                    return user.streams.some(
-                        function(skill){
-
-                            return (
-                                job.stream === skill ||
-                                job.skills.includes(skill)
-                            );
-
-                        }
-                    );
-
-                }
-            );
-
-
-        if(skillJobs.length > 0){
-
-            filteredJobs =
-                skillJobs;
-
-        }
-
-    }
-
-
-    filteredJobs =
-        filteredJobs.sort(
-            function(a,b){
-                return b.match-a.match;
-            }
-        );
-
-
-    /*
-       If filtering gives very few jobs,
-       show broader recommendations.
-    */
-
-    if(filteredJobs.length < 3){
-
-        filteredJobs =
-            jobs
-            .slice()
-            .sort(
-                function(a,b){
-                    return b.match-a.match;
-                }
-            )
-            .slice(0,6);
-
-    }
-
-
-    document.getElementById(
-        "skillCount"
-    ).innerText =
-        user.streams.length;
-
-
-    document.getElementById(
-        "matchScore"
-    ).innerText =
-        filteredJobs[0]
-        ? filteredJobs[0].match+"%"
-        : "0%";
-
-
-    document.getElementById(
-        "jobCount"
-    ).innerText =
-        filteredJobs.length;
-
-
-    document.getElementById(
-        "careerModeResult"
-    ).innerText =
-        user.careerMode ||
-        "Career";
-
-
-    document.getElementById(
-        "profileMessage"
-    ).innerText =
-        "Based on your " +
-        (user.degree || "education") +
-        ", " +
-        (user.branch || "background") +
-        " and selected skills, CareerConnect AI recommends these opportunities.";
-
-
-    renderJobs(filteredJobs);
-
-
-    showPage("resultsPage");
-
-}
-
-
-/* =========================================
-   RENDER JOBS
-========================================= */
-
-function renderJobs(jobList){
-
-    const grid =
-        document.getElementById(
-            "jobGrid"
-        );
-
-
-    grid.innerHTML = "";
-
-
-    jobList.forEach(
-        function(job,index){
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "card job-card";
-
-
-            card.innerHTML = `
-
-                <div class="job-top">
-
-                    <div>
-
-                        <h3>
-                            ${job.title}
-                        </h3>
-
-                        <p class="company">
-                            ${job.company}
-                        </p>
-
-                    </div>
-
-                    <span class="match">
-                        ${job.match}% Match
-                    </span>
-
-                </div>
-
-
-                <p class="job-meta">
-                    📍 ${job.location}
-                    &nbsp; • &nbsp;
-                    💼 ${job.type}
-                </p>
-
-
-                <div class="skills">
-
-                    ${job.skills.map(
-                        function(skill){
-
-                            return `
-                                <span class="skill">
-                                    ${skill}
-                                </span>
-                            `;
-
-                        }
-                    ).join("")}
-
-                </div>
-
-
-                <button
-                    class="primary-btn"
-                    onclick="openJob(${index})">
-
-                    VIEW JOB
-
-                </button>
-
-            `;
-
-
-            card.dataset.jobIndex =
-                index;
-
-
-            grid.appendChild(card);
-
-        }
-    );
-
-
-    /*
-       Save rendered jobs for modal indexing.
-    */
-
-    window.currentJobs =
-        jobList;
-
-}
-
-
-/* =========================================
-   JOB MODAL
-========================================= */
-
-function openJob(index){
-
-    selectedJob =
-        window.currentJobs[index];
-
-
-    if(!selectedJob){
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "modalTitle"
-    ).innerText =
-        selectedJob.title;
-
-
-    document.getElementById(
-        "modalCompany"
-    ).innerText =
-        selectedJob.company;
-
-
-    document.getElementById(
-        "modalLocation"
-    ).innerText =
-        "📍 " +
-        selectedJob.location +
-        " • " +
-        selectedJob.type;
-
-
-    document.getElementById(
-        "modalDescription"
-    ).innerText =
-        selectedJob.description;
-
-
-    document.getElementById(
-        "modalMissing"
-    ).innerText =
-        selectedJob.missing.join(", ");
-
-
-    document.getElementById(
-        "modalSkills"
-    ).innerHTML =
-        selectedJob.skills
-        .map(
-            function(skill){
-
-                return `
-                    <span class="skill">
-                        ${skill}
-                    </span>
-                `;
-
-            }
-        )
-        .join("");
-
-
-    document.getElementById(
-        "jobModal"
-    ).classList.add("active");
-
-}
-
-
-function closeJobModal(){
-
-    document.getElementById(
-        "jobModal"
-    ).classList.remove(
-        "active"
-    );
-
-}
-
-
-/* =========================================
-   APPLY
-========================================= */
-
-function applyJob(){
-
-    if(!selectedJob){
-
-        return;
-
-    }
-
-
-    closeJobModal();
-
-
-    document.getElementById(
-        "successText"
-    ).innerText =
-        "Your profile is ready to apply for " +
-        selectedJob.title +
-        " at " +
-        selectedJob.company +
-        ".";
-
-
-    showPage("successPage");
-
-}
-
-
-/* =========================================
-   CAREER REPORT
-========================================= */
-
-function showCareerReport(){
-
-    document.getElementById(
-        "reportProfile"
-    ).innerText =
-
-        "Career path: " +
-        (user.careerMode || "Not specified") +
-        ". Education: " +
-        (user.degree || "Not specified") +
-        " - " +
-        (user.branch || "Not specified") +
-        ". Preferred location: " +
-        (user.location || "Flexible") +
-        ".";
-
-
-    const recommended =
-        document.getElementById(
-            "recommendedSkills"
-        );
-
-
-    let skills = [];
-
-
-    if(
-        user.streams.includes("Python")
-    ){
-
-        skills.push(
-            "Django or FastAPI",
-            "SQL",
-            "REST APIs",
-            "Docker"
-        );
-
-    }
-
-
-    if(
-        user.streams.includes("Java")
-    ){
-
-        skills.push(
-            "Spring Boot",
-            "SQL",
-            "REST APIs",
-            "Docker"
-        );
-
-    }
-
-
-    if(
-        user.streams.includes("Web Development")
-    ){
-
-        skills.push(
-            "JavaScript",
-            "React",
-            "TypeScript",
-            "Git"
-        );
-
-    }
-
-
-    if(
-        user.streams.includes("AI/ML")
-    ){
-
-        skills.push(
-            "Machine Learning",
-            "Pandas",
-            "NumPy",
-            "Deep Learning"
-        );
-
-    }
-
-
-    if(skills.length === 0){
-
-        skills = [
-            "Communication",
-            "Problem Solving",
-            "Git",
-            "SQL",
-            "Interview Preparation"
-        ];
-
-    }
-
-
-    skills =
-        [...new Set(skills)];
-
-
-    recommended.innerHTML =
-        skills
-        .slice(0,8)
-        .map(
-            function(skill){
-
-                return `
-                    <li>${skill}</li>
-                `;
-
-            }
-        )
-        .join("");
-
-
-    document.getElementById(
-        "finalRecommendation"
-    ).innerText =
-
-        "Focus on practical projects, strengthen the missing skills " +
-        "shown in job matches, and apply consistently to roles " +
-        "where your current profile has a strong match.";
-
-
-    showPage("reportPage");
-
-}
-
-
-/* =========================================
-   INITIALIZE
-========================================= */
-
-loadYears();
-
-updateBranches();
-
-
-/* =========================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
-========================================= */
-
-document.getElementById(
-    "jobModal"
-).addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target ===
-            this
-        ){
-
-            closeJobModal();
-
-        }
-
-    }
-);
-
-</script>
-
+        authModal.classList.add('hidden');
+        await checkUserProfile(res.user);
+      } catch (err) {
+        authError.innerText = err.message;
+        authError.classList.remove('hidden');
+      }
+    });
+
+    // Logout
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await signOut(auth);
+      location.reload();
+    });
+
+    // Firebase Auth Observer (Persistent Sessions)
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      if (user) {
+        navUserSection.classList.add('hidden');
+        userPill.classList.remove('hidden');
+        userPill.classList.add('flex');
+        await checkUserProfile(user);
+      } else {
+        navUserSection.classList.remove('hidden');
+        userPill.classList.add('hidden');
+        userPill.classList.remove('flex');
+        greetingText.innerText = "Discover Your Next Look ✨";
+      }
+    });
+
+    // Initial Load
+    renderDrops('all');
+  </script>
 </body>
-
 </html>
